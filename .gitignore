@@ -1,0 +1,2 @@
+# Ignore docker volume storage
+/volumes
