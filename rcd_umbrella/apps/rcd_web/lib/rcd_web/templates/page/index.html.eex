@@ -1,13 +1,3 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
-</section>
-
-<section>
-  <button
-    type="button" 
-    class="theme-btn font-body rounded-btn text-xl font-medium bg-primary hover:bg-secondary text-primary hover:text-secondary px-6 py-3"
-  >
-    Swap Theme
-  </button>
+<section class="absolute text-primary text-2xl inset-0 flex items-center justify-center">
+  <p>ryandurham.com</p>
 </section>
