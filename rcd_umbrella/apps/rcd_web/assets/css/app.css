@@ -13,8 +13,8 @@
   --color-text-inverse: #444;
   --color-text-inverse-soft: #999;
 
-  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "dm", monospace;
+  --font-body: "dm", monospace;
 
   --font-weight-normal: 400;
   --font-weight-display: 400;
@@ -28,19 +28,17 @@
   --color-bg-primary: #c0b283;
   --color-bg-secondary: #dcd0c0;
   --color-bg-default: #f4f4f4;
-  --color-bg-inverse: #373737;
+  --color-bg-inverse: #011627;
 
-  --color-text-primary: #fff;
-  --color-text-secondary: #927e7e;
-  --color-text-default: #373737;
-  --color-text-default-soft: #6a6a6a;
-  --color-text-inverse: #fff;
-  --color-text-inverse-soft: #bbb;
+  --color-text-primary: #D6DEEB;
+  --color-text-secondary: #D6DEEB;
+  --color-text-default: #D6DEEB;
+  --color-text-default-soft: #D6DEEB;
+  --color-text-inverse: #5F7777;
+  --color-text-inverse-soft: #5F7777;
 
-  --font-display: Georgia, Times, "Times New Roman", serif;
-  --font-body: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
-    "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana,
-    "Verdana Ref", sans-serif;
+  --font-display: "dm", monospace;
+  --font-body: "dm", monospace;
 
   --font-weight-normal: 400;
   --font-weight-display: 400;
