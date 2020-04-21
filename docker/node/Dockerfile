@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:8-alpine
 
 LABEL maintainer="Ryan Durham <ryan@stagerightlabs.com>"
 
