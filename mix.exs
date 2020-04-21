@@ -5,7 +5,13 @@ defmodule Rcd.Umbrella.MixProject do
     [
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        production: [
+          version: "0.0.1",
+          applications: [rcd_web: :permanent, library: :permanent]
+        ],
+      ]
     ]
   end
 
