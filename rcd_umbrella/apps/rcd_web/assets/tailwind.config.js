@@ -29,6 +29,18 @@ module.exports = {
       btn: "var(--rounded-btn)"
     },
   },
+  corePlugins: {
+    gap: false,
+    gridAutoFlow: false,
+    gridColumn: false,
+    gridColumnStart: false,
+    gridColumnEnd: false,
+    gridRow: false,
+    gridRowStart: false,
+    gridRowEnd: false,
+    gridTemplateColumns: false,
+    gridTemplateRows: false
+  },
   variants: {},
   plugins: []
 }
