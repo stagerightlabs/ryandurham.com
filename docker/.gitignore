@@ -1,0 +1,3 @@
+# Ignore docker volume storage
+/volumes
+/rcd_umbrella/config/prod.secret.exs
