@@ -6,13 +6,12 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     '../lib/rcd_web/templates/**/*.eex',
     '../lib/rcd_web/templates/**/*.leex',
     '../lib/rcd_web/views/**/*.ex',
+    "./js/**/*.js"
   ],
 
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 })
-
-
 
 module.exports = {
   plugins: [
