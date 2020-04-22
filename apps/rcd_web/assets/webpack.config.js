@@ -31,7 +31,7 @@ module.exports = (env, options) => ({
       {
         test: /\.css$/,
         use: [
-	    MiniCssExtractPlugin.loader, 
+	    MiniCssExtractPlugin.loader,
 	    'css-loader',
 	    'postcss-loader'
 	]
