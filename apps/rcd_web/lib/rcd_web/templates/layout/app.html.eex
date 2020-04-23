@@ -19,7 +19,10 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
     <footer class="absolute right-0 bottom-0 font-display text-primary p-2 text-inverse">
-      <p><a href="https://dank.sh/" target="_blank">dank mono</a> / <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a></p>
+      <p>
+        <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a> /
+        <a href="https://dank.sh/" target="_blank">dank mono</a>
+      </p>
     </footer>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
