@@ -18,22 +18,22 @@ import "phoenix_html"
 // import socket from "./socket"
 
 // Toggle Dark Theme
-var d = document.documentElement,
-    t = document.querySelectorAll(".theme-btn")[0],
-    m = localStorage.getItem("theme");
+// var d = document.documentElement,
+//     t = document.querySelectorAll(".theme-btn")[0],
+//     m = localStorage.getItem("theme");
 
-if(m == "dark" || !m) {
-  d.classList.add("theme-dark");
-}
+// if(m == "dark" || !m) {
+//   d.classList.add("theme-dark");
+// }
 
-if (t) {
-  t.addEventListener("click", function(){
-    if(d.classList.contains("theme-dark")) {
-      d.classList.remove("theme-dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      d.classList.add("theme-dark");
-      localStorage.setItem("theme", "dark");
-    }
-  });
-}
+// if (t) {
+//   t.addEventListener("click", function(){
+//     if(d.classList.contains("theme-dark")) {
+//       d.classList.remove("theme-dark");
+//       localStorage.setItem("theme", "light");
+//     } else {
+//       d.classList.add("theme-dark");
+//       localStorage.setItem("theme", "dark");
+//     }
+//   });
+// }

@@ -9,16 +9,30 @@
   </head>
   <body class="h-screen">
     <header>
-      <section class="container">
-
-      </section>
+      <aside class="absolute top-0 right-0 p-2 z-10">
+        <span
+          x-init="themeToggleInit()"
+          x-data="themeToggle()"
+          @click="toggle"
+          :aria-checked="isOn"
+          class="bg-inverse relative inline-block flex-shrink-0 h-6 w-11 border-2 border-gray-600 rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline cursor-pointer"
+          role="checkbox"
+          tabindex="0"
+        >
+          <span
+            aria-hidden="true"
+            :class="{'translate-x-5': isOn, 'translate-x-0': !isOn }"
+            class="translate-x-0 inline-block h-5 w-5 rounded-full bg-gray-600 shadow transform transition ease-in-out duration-200"
+          ></span>
+        </span>
+      </aside>
     </header>
     <main role="main" class="h-screen">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
-    <footer class="absolute right-0 bottom-0 font-display text-primary p-2 text-inverse">
+    <footer class="absolute right-0 bottom-0 font-display text-default p-2 z-10">
       <p>
         <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a> /
         <a href="https://dank.sh/" target="_blank">dank mono</a>
@@ -27,3 +41,32 @@
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
+<script>
+window.themeToggle = function() {
+  return {
+    isOn: false,
+    toggle() {
+      if(document.documentElement.classList.contains("theme-dark")) {
+        document.documentElement.classList.remove("theme-dark");
+        localStorage.setItem("theme", "light");
+        this.isOn = true;
+      } else {
+        document.documentElement.classList.add("theme-dark");
+        localStorage.setItem("theme", "dark");
+        this.isOn = false;
+      }
+    }
+  }
+}
+window.themeToggleInit = function() {
+  var m = localStorage.getItem("theme");
+
+  if(m == "dark" || !m) {
+    document.documentElement.classList.add("theme-dark");
+    isOn = false;
+    console.log('false')
+  } else {
+    isOn = true;
+  }
+}
+</script>
