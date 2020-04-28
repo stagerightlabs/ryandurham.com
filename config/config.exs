@@ -15,7 +15,6 @@ config :library,
 
 # Configure Mix tasks and generators
 config :rcd_web,
-  ecto_repos: [Rcd.Repo],
   generators: [context_app: :rcd]
 
 # Configures the endpoint

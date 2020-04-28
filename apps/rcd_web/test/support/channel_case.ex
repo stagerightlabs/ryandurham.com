@@ -26,10 +26,10 @@ defmodule RcdWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Rcd.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Library.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Rcd.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Library.Repo, {:shared, self()})
     end
 
     :ok
