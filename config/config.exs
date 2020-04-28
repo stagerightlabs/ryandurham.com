@@ -23,7 +23,7 @@ config :rcd_web, RcdWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "BDQ8uBcNj41MXMrbNDhwhEFEfjvgeMrE9gdq0x0vCYEhSIzGOInkXovCJ4xEsxWD",
   render_errors: [view: RcdWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: RcdWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: RcdWeb.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
