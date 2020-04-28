@@ -1,30 +1,10 @@
+/*! purgecss start ignore */
 @tailwind base;
 
+@tailwind components;
+
+/* Dark Theme (default) */
 :root {
-  --color-bg-primary: #0252cc;
-  --color-bg-secondary: #ffc402;
-  --color-bg-default: #fff;
-  --color-bg-inverse: #fff;
-
-  --color-text-primary: #fff;
-  --color-text-secondary: #755f17;
-  --color-text-default: #444;
-  --color-text-default-soft: #999;
-  --color-text-inverse: #444;
-  --color-text-inverse-soft: #999;
-
-  --font-display: "dm", monospace;
-  --font-body: "dm", monospace;
-
-  --font-weight-normal: 400;
-  --font-weight-display: 400;
-  --font-weight-btn: 600;
-
-  --rounded-btn: 0.25rem;
-}
-
-/*! purgecss start ignore */
-.theme-dark {
   --color-bg-primary: #c0b283;
   --color-bg-secondary: #dcd0c0;
   --color-bg-default: #f4f4f4;
@@ -46,8 +26,32 @@
 
   --rounded-btn: 0;
 }
+
+/* Light Theme */
+.theme-light {
+  --color-bg-primary: #0252cc;
+  --color-bg-secondary: #ffc402;
+  --color-bg-default: #fff;
+  --color-bg-inverse: #fff;
+
+  --color-text-primary: #fff;
+  --color-text-secondary: #755f17;
+  --color-text-default: #444;
+  --color-text-default-soft: #999;
+  --color-text-inverse: #444;
+  --color-text-inverse-soft: #999;
+
+  --font-display: "dm", monospace;
+  --font-body: "dm", monospace;
+
+  --font-weight-normal: 400;
+  --font-weight-display: 400;
+  --font-weight-btn: 600;
+
+  --rounded-btn: 0.25rem;
+}
 /*! purgecss end ignore */
 
-@tailwind components;
+
 
 @tailwind utilities;

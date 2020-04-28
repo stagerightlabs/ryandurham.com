@@ -13,6 +13,7 @@ import dm from '../css/dank-mono.css'
 // Import dependencies
 //
 import 'phoenix_html'
+import 'alpinejs'
 
 // Import local files
 //
