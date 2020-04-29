@@ -20,6 +20,7 @@ defmodule RcdWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+      import RcdWeb.ConnCase
       alias RcdWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing

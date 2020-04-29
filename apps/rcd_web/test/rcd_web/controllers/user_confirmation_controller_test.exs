@@ -1,11 +1,17 @@
 defmodule RcdWeb.UserConfirmationControllerTest do
-  use RcdWeb.ConnCase, async: true
+  use RcdWeb.ConnCase
 
   alias Admin.Accounts
   alias Admin.Repo
   import Admin.AccountsFixtures
 
   setup do
+    # Explicitly get a connection before each test
+    # https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Admin.Repo)
+    # Setting the shared mode must be done only after checkout
+    Ecto.Adapters.SQL.Sandbox.mode(Admin.Repo, {:shared, self()})
+
     %{user: user_fixture()}
   end
 
