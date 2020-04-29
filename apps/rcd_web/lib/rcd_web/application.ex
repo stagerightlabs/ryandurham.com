@@ -8,6 +8,8 @@ defmodule RcdWeb.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      # Start the PubSub system
+      {Phoenix.PubSub, name: RcdWeb.PubSub},
       # Start the endpoint when the application starts
       RcdWeb.Endpoint
       # Starts a worker by calling: RcdWeb.Worker.start_link(arg)

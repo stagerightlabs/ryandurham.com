@@ -10,7 +10,7 @@ defmodule Rcd.Umbrella.MixProject do
         production: [
           version: "0.0.1",
           applications: [rcd_web: :permanent, library: :permanent]
-        ],
+        ]
       ]
     ]
   end
