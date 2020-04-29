@@ -36,10 +36,12 @@ defmodule Admin.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bamboo, "~> 1.4"},
+      {:bamboo_smtp, "~> 2.1.0"},
       {:bcrypt_elixir, "~> 2.0"},
       {:ecto_sql, "~> 3.1"},
+      {:jason, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
-      {:jason, "~> 1.0"}
     ]
   end
 
