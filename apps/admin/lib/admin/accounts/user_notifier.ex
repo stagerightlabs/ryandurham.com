@@ -1,4 +1,7 @@
 defmodule Admin.Accounts.UserNotifier do
+  import Bamboo.Email
+  import Bamboo.Phoenix
+
   # For simplicity, this module simply logs messages to the terminal.
   # You should replace it by a proper e-mail or notification tool, such as:
   #
@@ -6,6 +9,12 @@ defmodule Admin.Accounts.UserNotifier do
   #   * Bamboo - https://hexdocs.pm/bamboo
   #
   defp deliver(to, body) do
+    new_email()
+      |> from("admin@ryandurham.com")
+      |> subject("auth email")
+      |> to(to)
+      |> text_body(body)
+      |> Admin.Email.Mailer.deliver_now()
     require Logger
     Logger.debug(body)
     {:ok, %{to: to, body: body}}
