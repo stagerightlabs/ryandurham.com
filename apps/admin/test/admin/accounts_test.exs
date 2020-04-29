@@ -6,6 +6,13 @@ defmodule Admin.AccountsTest do
   import Admin.AccountsFixtures
   alias Admin.Accounts.{User, UserToken}
 
+  # setup do
+  #   # Explicitly get a connection before each test
+  #   :ok = Ecto.Adapters.SQL.Sandbox.checkout(Admin.Repo)
+  #   # Setting the shared mode must be done only after checkout
+  #   Ecto.Adapters.SQL.Sandbox.mode(Admin.Repo, {:shared, self()})
+  # end
+
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do
       refute Accounts.get_user_by_email("unknown@example.com")

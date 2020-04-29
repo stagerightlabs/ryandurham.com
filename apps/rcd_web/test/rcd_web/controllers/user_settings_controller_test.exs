@@ -1,10 +1,18 @@
 defmodule RcdWeb.UserSettingsControllerTest do
-  use RcdWeb.ConnCase, async: true
+  use RcdWeb.ConnCase
 
   alias Admin.Accounts
   import Admin.AccountsFixtures
 
-  setup :register_and_login_user
+  setup %{conn: conn} do
+    # Explicitly get a connection before each test
+    # https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Admin.Repo)
+    # Setting the shared mode must be done only after checkout
+    Ecto.Adapters.SQL.Sandbox.mode(Admin.Repo, {:shared, self()})
+
+    RcdWeb.ConnCase.register_and_login_user(%{conn: conn})
+  end
 
   describe "GET /users/settings" do
     test "renders settings page", %{conn: conn} do

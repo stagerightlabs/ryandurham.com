@@ -13,6 +13,9 @@ use Mix.Config
 config :library,
   ecto_repos: [Library.Repo]
 
+config :admin,
+  ecto_repos: [Admin.Repo]
+
 # Configure Mix tasks and generators
 config :rcd_web,
   generators: [context_app: :admin]
