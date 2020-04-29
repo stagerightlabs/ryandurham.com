@@ -15,7 +15,7 @@ config :library,
 
 # Configure Mix tasks and generators
 config :rcd_web,
-  generators: [context_app: :rcd]
+  generators: [context_app: :admin]
 
 # Configures the endpoint
 config :rcd_web, RcdWeb.Endpoint,
