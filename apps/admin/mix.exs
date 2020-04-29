@@ -1,9 +1,9 @@
-defmodule RcdWeb.MixProject do
+defmodule Admin.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :rcd_web,
+      app: :admin,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -11,7 +11,6 @@ defmodule RcdWeb.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -23,7 +22,7 @@ defmodule RcdWeb.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {RcdWeb.Application, []},
+      mod: {Admin.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -37,26 +36,26 @@ defmodule RcdWeb.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:admin, in_umbrella: true},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.1"},
-      {:library, in_umbrella: true},
-      {:phoenix, "~> 1.5.0"},
-      {:phoenix_pubsub, "~> 2.0"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phx_gen_auth, "~> 0.2.0", only: [:dev], runtime: false},
-      {:plug_cowboy, "~> 2.1"},
-      {:sentry, "~> 7.0"},
+      {:bamboo, "~> 1.4"},
+      {:bamboo_smtp, "~> 2.1.0"},
+      {:bcrypt_elixir, "~> 2.0"},
+      {:ecto_sql, "~> 3.1"},
+      {:jason, "~> 1.0"},
+      {:postgrex, ">= 0.0.0"},
     ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
-  # For example, we extend the test task to create and migrate the database.
+  # For example, to create, migrate and run the seeds file at once:
+  #
+  #     $ mix ecto.setup
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    [test: ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
   end
 end

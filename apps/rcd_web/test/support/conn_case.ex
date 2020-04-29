@@ -20,6 +20,7 @@ defmodule RcdWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+      import RcdWeb.ConnCase
       alias RcdWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
@@ -35,5 +36,31 @@ defmodule RcdWeb.ConnCase do
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  @doc """
+  Setup helper that registers and logs in users.
+
+      setup :register_and_login_user
+
+  It stores an updated connection and a registered user in the
+  test context.
+  """
+  def register_and_login_user(%{conn: conn}) do
+    user = Admin.AccountsFixtures.user_fixture()
+    %{conn: login_user(conn, user), user: user}
+  end
+
+  @doc """
+  Logs the given `user` into the `conn`.
+
+  It returns an updated `conn`.
+  """
+  def login_user(conn, user) do
+    token = Admin.Accounts.generate_session_token(user)
+
+    conn
+    |> Phoenix.ConnTest.init_test_session(%{})
+    |> Plug.Conn.put_session(:user_token, token)
   end
 end

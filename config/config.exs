@@ -9,13 +9,14 @@
 # move said applications out of the umbrella.
 use Mix.Config
 
-# Configure Mix tasks and generators
 config :library,
   ecto_repos: [Library.Repo]
 
-# Configure Mix tasks and generators
+config :admin,
+  ecto_repos: [Admin.Repo]
+
 config :rcd_web,
-  generators: [context_app: :rcd]
+  generators: [context_app: :admin]
 
 # Configures the endpoint
 config :rcd_web, RcdWeb.Endpoint,

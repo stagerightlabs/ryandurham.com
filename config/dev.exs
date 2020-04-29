@@ -9,6 +9,15 @@ config :library, Library.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+# Configure your database
+config :admin, Admin.Repo,
+  username: "ryan",
+  password: "secret",
+  database: "ryandurham.com",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -74,3 +83,7 @@ config :phoenix, :plug_init_mode, :runtime
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Finally import the config/prod.secret.exs which loads secrets
+# and configuration from environment variables.
+import_config "dev.secret.exs"
