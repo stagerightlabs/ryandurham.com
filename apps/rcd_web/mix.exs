@@ -45,6 +45,7 @@ defmodule RcdWeb.MixProject do
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phx_gen_auth, "~> 0.2.0", only: [:dev], runtime: false},
       {:plug_cowboy, "~> 2.1"},
       {:sentry, "~> 7.0"},
     ]
