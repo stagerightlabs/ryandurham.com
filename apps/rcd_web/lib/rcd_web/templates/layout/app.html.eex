@@ -9,7 +9,9 @@
   </head>
   <body class="h-screen">
     <header>
-
+      <nav role="navigation">
+        <%= render "_user_menu.html", assigns %>
+      </nav>
     </header>
     <main role="main" class="h-screen">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
