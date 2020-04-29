@@ -37,6 +37,7 @@ defmodule RcdWeb.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:admin, in_umbrella: true},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
       {:library, in_umbrella: true},
