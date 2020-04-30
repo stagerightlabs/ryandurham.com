@@ -5,7 +5,6 @@ defmodule RcdWeb.Router do
   use Plug.ErrorHandler
   use Sentry.Plug
 
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -17,6 +16,10 @@ defmodule RcdWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :portal_layout do
+    plug :put_layout, {RcdWeb.LayoutView, "portal.html"}
   end
 
   scope "/", RcdWeb do
@@ -46,7 +49,7 @@ defmodule RcdWeb.Router do
   end
 
   scope "/", RcdWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser, :require_authenticated_user, :portal_layout]
 
     delete "/users/logout", UserSessionController, :delete
     get "/users/settings", UserSettingsController, :edit
