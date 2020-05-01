@@ -16,17 +16,17 @@
         <% end %>
 
         <div>
-          <%= label f, :password, "New password", class: "block text-sm font-medium leading-5 text-default" %>
+          <%= label f, :password, "New password" %>
           <div class="mt-1 rounded-md shadow-sm">
-            <%= password_input f, :password, required: true, class: "appearance-none block w-full bg-900 px-3 py-2 text-gray-100 border border-gray-500 rounded-md placeholder-gray-400 focus:outline-none focus:border-blue transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            <%= password_input f, :password, required: true %>
           </div>
           <%= error_tag f, :password %>
         </div>
 
         <div class="mt-6">
-          <%= label f, :password_confirmation, "Confirm new password", class: "block text-sm font-medium leading-5 text-default" %>
+          <%= label f, :password_confirmation, "Confirm new password" %>
           <div class="mt-1 rounded-md shadow-sm">
-            <%= password_input f, :password_confirmation, required: true, class: "appearance-none block w-full bg-900 px-3 py-2 text-gray-100 border border-gray-500 rounded-md placeholder-gray-400 focus:outline-none focus:border-blue transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            <%= password_input f, :password_confirmation, required: true %>
           </div>
           <%= error_tag f, :password_confirmation %>
         </div>

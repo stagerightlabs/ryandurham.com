@@ -27,25 +27,25 @@
 
       <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
         <div>
-          <%= label f, :email, "Email Address", class: "block text-sm font-medium leading-5 text-default" %>
+          <%= label f, :email, "Email Address" %>
           <div class="mt-1 rounded-md shadow-sm">
-            <%= text_input f, :email, required: true, class: "appearance-none block w-full bg-900 px-3 py-2 text-gray-100 border border-gray-500 rounded-md placeholder-gray-400 focus:outline-none focus:border-blue transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            <%= text_input f, :email, required: true %>
           </div>
           <%= error_tag f, :email %>
         </div>
 
         <div class="mt-6">
-          <%= label f, :password, class: "block text-sm font-medium leading-5 text-default" %>
+          <%= label f, :password %>
           <div class="mt-1 rounded-md shadow-sm">
-            <%= password_input f, :password, required: true, class: "appearance-none block w-full bg-900 px-3 py-2 text-gray-100 border border-gray-500 rounded-md placeholder-gray-400 focus:outline-none focus:border-blue transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+            <%= password_input f, :password, required: true %>
           </div>
           <%= error_tag f, :password %>
         </div>
 
         <div class="mt-6 flex items-center justify-between">
           <div class="flex items-center">
-            <input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 bg-900 border-gray-500 text-gray-400 focus:outline-none focus:border-blue transition duration-150 ease-in-out" />
-            <label for="remember_me" class="ml-2 block text-sm leading-5 text-default">
+            <input id="remember_me" type="checkbox" class="form-checkbox" />
+            <label for="remember_me" class="ml-2">
               Remember me
             </label>
           </div>

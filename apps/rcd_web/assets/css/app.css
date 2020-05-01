@@ -62,3 +62,65 @@
 /*! purgecss end ignore */
 
 @tailwind utilities;
+
+/* Labels */
+label {
+  @apply block text-sm font-medium leading-5 text-default;
+}
+
+/* Inputs */
+input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
+  @apply appearance-none block w-full bg-900 px-3 py-2 text-primary border border-gray-500 rounded-md transition duration-150 ease-in-out;
+}
+
+input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):focus {
+  @apply outline-none border-blue;
+}
+
+input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):placeholder {
+  @apply text-gray-500;
+}
+
+@screen sm {
+  input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
+    @apply text-sm leading-5;
+  }
+}
+
+/* Checkboxes */
+input[type=checkbox] {
+  @apply h-4 w-4 bg-900 border-gray-500 text-gray-400 transition duration-150 ease-in-out;
+}
+
+input[type=checkbox]:focus {
+  @apply outline-none border-blue;
+}
+
+/* Buttons */
+.btn {
+  @apply flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary transition duration-150 ease-in-out;
+}
+
+.btn:hover {
+  @apply text-gray-500
+}
+
+.btn:focus {
+  @apply outline-none border-indigo-700 shadow-outline-indigo;
+}
+
+.btn-primary {
+  @apply bg-500;
+}
+
+.btn-primary:hover {
+  @apply bg-blue;
+}
+
+.btn-secondary {
+  @apply bg-700
+}
+
+.btn-secondary:hover {
+  @apply bg-cyan;
+}
