@@ -2,7 +2,6 @@ defmodule RcdWeb.UserResetPasswordController do
   use RcdWeb, :controller
 
   alias Admin.Accounts
-  alias RcdWeb.Router.Helpers, as: Router
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
 
@@ -24,7 +23,7 @@ defmodule RcdWeb.UserResetPasswordController do
       :info,
       "If your e-mail is in our system, you will receive instructions to reset your password shortly."
     )
-    |> redirect(to: Router.user_session_path(RcdWeb.Endpoint, :new))
+    |> redirect(to: Routes.user_session_path(RcdWeb.Endpoint, :new))
   end
 
   def edit(conn, _params) do
