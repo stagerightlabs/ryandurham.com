@@ -124,3 +124,16 @@ input[type=checkbox]:focus {
 .btn-secondary:hover {
   @apply bg-cyan;
 }
+
+/* Headings */
+h1 {
+  @apply text-4xl leading-9 text-primary;
+}
+
+h2 {
+  @apply text-3xl leading-9 text-primary;
+}
+
+h3 {
+  @apply text-2xl leading-9 text-default;
+}
