@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-inverse font-display h-screen">
+<html lang="en" class="bg-900 font-display h-screen">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -7,24 +7,20 @@
     <title>ryandurham.com</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="h-screen">
+  <body>
     <header>
       <nav role="navigation">
         <%= render "_portal_nav.html", assigns %>
       </nav>
     </header>
-    <main role="main" class="h-screen">
+    <main role="main">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
-          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render "_flash_messages.html", assigns %>
           <%= @inner_content %>
         </div>
       </div>
     </main>
-    <footer class="absolute right-0 bottom-0 left-0 flex font-display text-default p-2 z-10 justify-between">
-      <%= render "_theme_toggle.html", assigns %>
-    </footer>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
