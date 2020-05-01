@@ -71,7 +71,7 @@ defmodule RcdWeb.UserAuth do
     conn
     |> renew_session()
     |> delete_resp_cookie(@remember_me_cookie)
-    |> redirect(to: "/")
+    |> redirect(to: Routes.user_session_path(RcdWeb.Endpoint, :new))
   end
 
   @doc """
@@ -135,5 +135,5 @@ defmodule RcdWeb.UserAuth do
 
   defp maybe_store_return_to(conn), do: conn
 
-  defp signed_in_path(_conn), do: "/"
+  defp signed_in_path(_conn), do: Routes.user_settings_path(RcdWeb.Endpoint, :edit)
 end
