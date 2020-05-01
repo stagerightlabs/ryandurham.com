@@ -1,20 +1,22 @@
 module.exports = {
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        'gray-100': 'var(--color-gray-100)',
+        'gray-400': 'var(--color-gray-400)',
+        'gray-500': 'var(--color-gray-500)',
+        blue: 'var(--color-blue)',
+        cyan: 'var(--color-cyan)',
+        red: 'var(--color-red)'
+      },
       textColor: {
-        primary: 'var(--color-text-primary)',
-        secondary: 'var(--color-text-secondary)',
-        default: 'var(--color-text-default)',
-        'default-soft': 'var(--color-text-default-soft)',
-        inverse: 'var(--color-text-inverse)',
-        'inverse-soft': 'var(--color-text-inverse-soft)'
+        primary: 'var(--color-gray-200)',
+        default: 'var(--color-gray-400)'
       },
       backgroundColor: {
-        primary: 'var(--color-bg-primary)',
-        secondary: 'var(--color-bg-secondary)',
-        default: 'var(--color-bg-default)',
-        inverse: 'var(--color-bg-inverse)'
+        500: 'var(--color-background-500)',
+        700: 'var(--color-background-700)',
+        900: 'var(--color-background-900)'
       },
       fontFamily: {
         display: 'var(--font-display)',
@@ -24,10 +26,6 @@ module.exports = {
         normal: 'var(--font-weight-normal)',
         display: 'var(--font-weight-display)',
         btn: 'var(--font-weight-btn)'
-      },
-      borderRadius: {
-        none: '0',
-        btn: 'var(--rounded-btn)'
       }
     }
   },
