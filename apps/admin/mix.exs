@@ -41,7 +41,7 @@ defmodule Admin.MixProject do
       {:bcrypt_elixir, "~> 2.0"},
       {:ecto_sql, "~> 3.1"},
       {:jason, "~> 1.0"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 
