@@ -26,10 +26,8 @@
         <%# Desktop Nav Links %>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex">
-            <a href="#" class="px-3 py-2 rounded-md font-medium leading-5 text-primary bg-700 focus:outline-none focus:text-primary focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
-            <a href="#" class="ml-4 px-3 py-2 rounded-md font-medium leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-gray-700 transition duration-150 ease-in-out">Team</a>
-            <a href="#" class="ml-4 px-3 py-2 rounded-md font-medium leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-gray-700 transition duration-150 ease-in-out">Projects</a>
-            <a href="#" class="ml-4 px-3 py-2 rounded-md font-medium leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-gray-700 transition duration-150 ease-in-out">Calendar</a>
+            <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :dashboard)  %>
+            <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :todo, "ml-2") %>
           </div>
         </div>
       </div>
@@ -84,10 +82,8 @@
   -->
   <div class="sm:hidden" :class="{ 'block': mobileMenuVisible, 'hidden': !mobileMenuVisible }">
     <div class="px-2 pt-2 pb-3">
-      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-700 focus:outline-none transition duration-150 ease-in-out">Dashboard</a>
-      <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out">Team</a>
-      <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out">Projects</a>
-      <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out">Calendar</a>
+      <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, :dashboard)  %>
+      <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, :todo, "mt-1") %>
     </div>
   </div>
 </nav>
