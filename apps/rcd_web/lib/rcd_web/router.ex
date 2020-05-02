@@ -56,6 +56,9 @@ defmodule RcdWeb.Router do
     put "/users/settings/update_password", UserSettingsController, :update_password
     put "/users/settings/update_email", UserSettingsController, :update_email
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    get "/dashboard", PageController, :dashboard
+    get "/todo", PageController, :todo
   end
 
   scope "/", RcdWeb do
