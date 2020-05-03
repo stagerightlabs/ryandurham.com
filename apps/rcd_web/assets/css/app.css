@@ -137,3 +137,7 @@ h2 {
 h3 {
   @apply text-2xl leading-9 text-default;
 }
+
+ul {
+  @apply text-default list-inside list-disc;
+}

@@ -1,8 +1,7 @@
 <h1 class="my-8">To Do</h1>
 
 <ul>
-  <li>One</li>
-  <li>Two</li>
-  <li>Three</li>
-  <li>Four</li>
+  <li>Configure production email</li>
+  <li>Email templates</li>
+  <li>404 Page</li>
 </ul>
