@@ -26,3 +26,6 @@ erl_crash.dump
 config/prod.secret.exs
 config/dev.secret.exs
 config/test.secret.exs
+
+# Ignore proprietary assets
+apps/rcd_web/assets/css/dank-mono.css

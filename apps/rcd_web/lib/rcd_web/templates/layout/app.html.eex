@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-inverse font-display h-screen">
+<html lang="en" class="bg-900 font-display h-screen">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -8,31 +8,11 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body class="h-screen">
-    <header>
-      <nav role="navigation">
-        <%= render "_user_menu.html", assigns %>
-      </nav>
-    </header>
     <main role="main" class="h-screen">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
     <footer class="absolute right-0 bottom-0 left-0 flex font-display text-default p-2 z-10 justify-between">
-      <div x-data="{ mode: window.theme.mode }">
-        <p
-          x-show="mode === 'light'"
-          @click="mode = theme.toggle()"
-        >
-          <%= render RcdWeb.IconsView, "_moon.html", class: "w-4 cursor-pointer" %>
-        </p>
-        <p
-          x-show="mode === 'dark'"
-          @click="mode = theme.toggle()"
-        >
-          <%= render RcdWeb.IconsView, "_sun.html", class: "w-4 cursor-pointer" %>
-        </p>
-      </div>
+      <%= render "_theme_toggle.html", assigns %>
       <p class="text-xs">
         <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a> /
         <a href="https://dank.sh/" target="_blank">dank mono</a> /
@@ -42,32 +22,3 @@
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
-<script>
-window.themeToggle = function() {
-  return {
-    isOn: false,
-    toggle() {
-      if(document.documentElement.classList.contains("theme-dark")) {
-        document.documentElement.classList.remove("theme-dark");
-        localStorage.setItem("theme", "light");
-        this.isOn = true;
-      } else {
-        document.documentElement.classList.add("theme-dark");
-        localStorage.setItem("theme", "dark");
-        this.isOn = false;
-      }
-    }
-  }
-}
-window.themeToggleInit = function() {
-  var m = localStorage.getItem("theme");
-
-  if(m == "dark" || !m) {
-    document.documentElement.classList.add("theme-dark");
-    isOn = false;
-    console.log('false')
-  } else {
-    isOn = true;
-  }
-}
-</script>

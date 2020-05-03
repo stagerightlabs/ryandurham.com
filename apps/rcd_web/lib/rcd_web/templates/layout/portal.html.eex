@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-900 font-display h-screen">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ryandurham.com</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body>
+    <header>
+      <nav role="navigation">
+        <%= render "_portal_nav.html", assigns %>
+      </nav>
+    </header>
+    <main role="main">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+          <%= render "_flash_messages.html", assigns %>
+          <%= @inner_content %>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

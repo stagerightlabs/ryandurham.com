@@ -1,27 +1,69 @@
-<h1>Login</h1>
-
-<%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
-    </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= text_input f, :email, required: true %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
-
-  <div>
-    <%= submit "Login" %>
+<div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md mb-4">
+    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current text-primary" %>
+    <h2 class="mt-6 text-center">
+      Login
+    </h2>
   </div>
-<% end %>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <%= render RcdWeb.LayoutView, "_flash_messages.html", assigns %>
+  </div>
+
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="py-8 px-4 sm:rounded sm:px-10 border border-gray-500">
+      <%= if @error_message do %>
+        <div class="rounded-md border border-red p-4 mb-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <div class="text-sm leading-5 text-red">
+                <p><%= @error_message %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
+        <div>
+          <%= label f, :email, "Email Address" %>
+          <div class="mt-1 rounded-md shadow-sm">
+            <%= text_input f, :email, required: true, class: "" %>
+          </div>
+          <%= error_tag f, :email %>
+        </div>
+
+        <div class="mt-6">
+          <%= label f, :password %>
+          <div class="mt-1 rounded-md shadow-sm">
+            <%= password_input f, :password, required: true %>
+          </div>
+          <%= error_tag f, :password %>
+        </div>
+
+        <div class="mt-6 flex items-center justify-between">
+          <div class="flex items-center">
+            <%= checkbox f, :remember_me, class: "form-checkbox"  %>
+            <%= label f, :remember_me, "Remember Me", class: "ml-2" %>
+          </div>
+
+          <div class="text-sm leading-5">
+            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-default hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <span class="block w-full rounded-md shadow-sm">
+            <%= submit "Login", class: "w-full btn btn-primary" %>
+          </span>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

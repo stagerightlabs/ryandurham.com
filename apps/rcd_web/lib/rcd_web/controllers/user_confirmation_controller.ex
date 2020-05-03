@@ -22,7 +22,7 @@ defmodule RcdWeb.UserConfirmationController do
       "If your e-mail is in our system and it has not been confirmed yet, " <>
         "you will receive an e-mail with instructions shortly."
     )
-    |> redirect(to: "/")
+    |> redirect(to: Routes.user_session_path(RcdWeb.Endpoint, :new))
   end
 
   # Do not login the user after confirmation to avoid a
@@ -32,12 +32,12 @@ defmodule RcdWeb.UserConfirmationController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Account confirmed successfully.")
-        |> redirect(to: "/")
+        |> redirect(to: Routes.user_session_path(RcdWeb.Endpoint, :new))
 
       :error ->
         conn
         |> put_flash(:error, "Confirmation link is invalid or it has expired.")
-        |> redirect(to: "/")
+        |> redirect(to: Routes.user_session_path(RcdWeb.Endpoint, :new))
     end
   end
 end

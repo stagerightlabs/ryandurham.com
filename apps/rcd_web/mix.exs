@@ -38,6 +38,7 @@ defmodule RcdWeb.MixProject do
   defp deps do
     [
       {:admin, in_umbrella: true},
+      {:calendar, "~> 1.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
       {:library, in_umbrella: true},
@@ -49,6 +50,7 @@ defmodule RcdWeb.MixProject do
       {:phx_gen_auth, "~> 0.2.0", only: [:dev], runtime: false},
       {:plug_cowboy, "~> 2.1"},
       {:sentry, "~> 7.0"},
+      {:tzdata, "~> 1.0.1"}
     ]
   end
 

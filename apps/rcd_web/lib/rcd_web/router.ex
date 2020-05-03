@@ -5,7 +5,6 @@ defmodule RcdWeb.Router do
   use Plug.ErrorHandler
   use Sentry.Plug
 
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -17,6 +16,10 @@ defmodule RcdWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :portal_layout do
+    plug :put_layout, {RcdWeb.LayoutView, "portal.html"}
   end
 
   scope "/", RcdWeb do
@@ -35,8 +38,6 @@ defmodule RcdWeb.Router do
   scope "/", RcdWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
     get "/users/login", UserSessionController, :new
     post "/users/login", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
@@ -46,13 +47,16 @@ defmodule RcdWeb.Router do
   end
 
   scope "/", RcdWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser, :require_authenticated_user, :portal_layout]
 
     delete "/users/logout", UserSessionController, :delete
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings/update_password", UserSettingsController, :update_password
     put "/users/settings/update_email", UserSettingsController, :update_email
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    get "/dashboard", PageController, :dashboard
+    get "/todo", PageController, :todo
   end
 
   scope "/", RcdWeb do
