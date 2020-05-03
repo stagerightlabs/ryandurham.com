@@ -1,4 +1,11 @@
 module.exports = {
+  purge: [
+    '../lib/rcd_web/live/**/*.ex',
+    '../lib/rcd_web/templates/**/*.eex',
+    '../lib/rcd_web/templates/**/*.leex',
+    '../lib/rcd_web/views/**/*.ex',
+    './js/**/*.js'
+  ],
   theme: {
     extend: {
       colors: {
