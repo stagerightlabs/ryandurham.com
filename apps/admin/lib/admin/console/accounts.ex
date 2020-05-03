@@ -44,7 +44,7 @@ defmodule Admin.Console.Accounts do
     case Admin.Accounts.get_user_by_email(email) do
       user = %{id: _id, confirmed_at: nil} ->
         {:ok, user} = Repo.update(User.confirm_changeset(user))
-        IO.puts("user " <> user.email <> " has been confirmed.");
+        IO.puts("user " <> user.email <> " has been confirmed.")
 
       %{email: email, confirmed_at: _confirmed_at} ->
         IO.puts("user " <> email <> " has already been confirmed")

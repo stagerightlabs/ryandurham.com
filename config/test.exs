@@ -13,8 +13,7 @@ config :rcd_web, RcdWeb.Endpoint,
 config :logger, level: :warn
 
 # Email configuration
-config :admin, Admin.Email.Mailer,
-  adapter: Bamboo.TestAdapter
+config :admin, Admin.Email.Mailer, adapter: Bamboo.TestAdapter
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.

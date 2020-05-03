@@ -10,11 +10,12 @@ defmodule Admin.Accounts.UserNotifier do
   #
   defp deliver(to, body) do
     new_email()
-      |> from("admin@ryandurham.com")
-      |> subject("auth email")
-      |> to(to)
-      |> text_body(body)
-      |> Admin.Email.Mailer.deliver_now()
+    |> from("admin@ryandurham.com")
+    |> subject("auth email")
+    |> to(to)
+    |> text_body(body)
+    |> Admin.Email.Mailer.deliver_now()
+
     require Logger
     Logger.debug(body)
     {:ok, %{to: to, body: body}}
