@@ -12,7 +12,8 @@ window.theme = {
       ? 'light'
       : 'dark'
     // Enable theme transitions after the initial theme mode has been set.
-    document.documentElement.classList.add('transition', 'ease-in-out', 'duration-500')
+    document.body.classList.add('transition', 'ease-in-out', 'duration-500')
+
     // update local storage
     this.save()
     // update the theme class on the document root
@@ -24,10 +25,10 @@ window.theme = {
     window.localStorage.setItem('theme', this.mode)
   },
   updateDocument () {
-    document.documentElement.classList.remove('theme-light')
+    document.documentElement.classList.remove('mode-dark')
 
-    if (this.mode === 'light') {
-      document.documentElement.classList.add('theme-light')
+    if (this.mode === 'dark') {
+      document.documentElement.classList.add('mode-dark')
     }
   }
 }

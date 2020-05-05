@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-900 font-display h-screen">
+<html lang="en" class="h-screen font-dm">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -7,11 +7,11 @@
     <title>ryandurham.com</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="h-screen">
+  <body class="h-screen bg-owl-100 dark:bg-owl-900 text-owl-900 dark:text-owl-400">
     <main role="main" class="h-screen">
       <%= @inner_content %>
     </main>
-    <footer class="absolute right-0 bottom-0 left-0 flex font-display text-default p-2 z-10 justify-between">
+    <footer class="absolute right-0 bottom-0 left-0 flex text-owl-900 dark:text-owl-400 p-2 z-10 justify-between">
       <%= render "_theme_toggle.html", assigns %>
       <p class="text-xs">
         <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a> /

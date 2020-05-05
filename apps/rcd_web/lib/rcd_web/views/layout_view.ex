@@ -10,20 +10,21 @@ defmodule RcdWeb.LayoutView do
 
   def desktop_nav_button_classes(conn, action, extra \\ "") do
     if action_name(conn) == action do
-      "px-3 py-2 rounded-md font-medium leading-5 text-primary bg-700 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out " <>
+      "px-3 py-2 rounded-md font-medium leading-5 text-owl-900 dark:text-owl-200 bg-owl-300 dark:bg-owl-700 transition duration-150 ease-in-out " <>
         extra
     else
-      "px-3 py-2 rounded-md font-medium leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out " <>
+      "px-3 py-2 rounded-md font-medium leading-5 text-owl-900 dark:text-owl-400 dark-hover:text-owl-200  hover:bg-owl-200 dark-hover:bg-owl-800 transition duration-150 ease-in-out " <>
         extra
     end
+    #
   end
 
   def mobile_nav_button_classes(conn, action, extra \\ "") do
     if action_name(conn) == action do
-      "block px-3 py-2 rounded-md text-base font-medium text-primary bg-700 focus:outline-none transition duration-150 ease-in-out " <>
+      "block px-3 py-2 rounded-md text-base font-medium text-owl-900 dark:text-owl-200 bg-owl-300 dark:bg-owl-700 transition duration-150 ease-in-out " <>
         extra
     else
-      "block px-3 py-2 rounded-md text-base font-medium text-default hover:text-primary hover:bg-500 focus:outline-none focus:text-primary focus:bg-500 transition duration-150 ease-in-out " <>
+      "block px-3 py-2 rounded-md text-base font-medium text-owl-900 dark:text-owl-400 dark-hover:text-owl-200  hover:bg-owl-200 dark-hover:bg-owl-800 transition duration-150 ease-in-out " <>
         extra
     end
   end

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-900 font-display h-screen">
+<html lang="en" class="h-screen font-dm">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -7,7 +7,7 @@
     <title>ryandurham.com</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body>
+  <body class="bg-owl-100 dark:bg-owl-900 text-owl-900 dark:text-owl-400">
     <header>
       <nav role="navigation">
         <%= render "_portal_nav.html", assigns %>

@@ -1,143 +1,146 @@
 /*! purgecss start ignore */
+
 @tailwind base;
 
 @tailwind components;
 
-/* Dark Theme (default) */
-:root {
-  --color-red: #EF5350;
-  --color-green: #22DA6E;
-  --color-orange: #F78C6C;
-  --color-blue: #82AAFF;
-  --color-magenta: #C792EA;
-  --color-cyan: #21C7A8;
-  --color-yellow: #ADDB67;
-  --color-white: #ffffff;
-
-  --color-gray-100: #D6DEEB;
-  --color-gray-200: #A4AEBE;
-  --color-gray-400: #5F7777;
-  --color-gray-500: #4C5862;
-
-  /* --color-background-200: #5f7D97; */
-  --color-background-500: #13344f;
-  --color-background-700: #092034;
-  --color-background-900: #011627;
-
-  --font-display: "dm", monospace;
-  --font-body: "dm", monospace;
-
-  --font-weight-normal: 400;
-  --font-weight-display: 400;
-  --font-weight-btn: 600;
-}
-
-/* Light Theme */
-.theme-light {
-  --color-red: #EF5350;
-  --color-green: #22DA6E;
-  --color-orange: #F78C6C;
-  --color-blue: #82AAFF;
-  --color-magenta: #C792EA;
-  --color-cyan: #21C7A8;
-  --color-yellow: #ADDB67;
-  --color-white: #ffffff;
-
-  --color-gray-100: #D6DEEB;
-  --color-gray-200: #5F7777;
-  --color-gray-400: #5F7777;
-  --color-gray-500: #4C5862;
-
-  --color-background-500: #D3E8F8;
-  --color-background-700: #D3E8F8;
-  --color-background-900: #F0F0F0;
-
-  --font-display: "dm", monospace;
-  --font-body: "dm", monospace;
-
-  --font-weight-normal: 400;
-  --font-weight-display: 400;
-  --font-weight-btn: 600;
-}
 /*! purgecss end ignore */
 
-@tailwind utilities;
-
-/* Labels */
+/* labels */
 label {
-  @apply block text-sm font-medium leading-5 text-default;
+  @apply block text-sm font-medium leading-5;
 }
 
-/* Inputs */
+/* regular text inputs light mode*/
 input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
-  @apply appearance-none block w-full bg-900 px-3 py-2 text-primary border border-gray-500 rounded-md transition duration-150 ease-in-out;
+  @apply appearance-none block w-full bg-transparent text-owl-900 px-3 py-2 border border-owl-600 rounded-md transition duration-150 ease-in-out;
 }
 
+/* regular text inputs dark mode*/
+.mode-dark input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
+  @apply text-owl-400;
+}
+
+/* Regular text inputs :focus dark mode */
 input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):focus {
+  @apply outline-none border-dark-blue;
+}
+
+/* Regular text inputs :focus light mode */
+.mode-dark input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):focus {
   @apply outline-none border-blue;
 }
 
+/* Regular text inputs :placeholder light mode */
 input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):placeholder {
-  @apply text-gray-500;
+  @apply text-owl-900;
 }
 
+/* Regular text inputs :placeholder dark mode */
+.mode-dark input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):placeholder {
+  @apply text-owl-600;
+}
+
+/* checkboxes */
+input[type=checkbox] {
+  @apply h-4 w-4 bg-transparent text-owl-200 border-owl-600 transition duration-150 ease-in-out;
+}
+
+/* checkboxes dark mode */
+.mode-dark input[type=checkbox] {
+  @apply text-owl-600;
+}
+
+/* checkboxes :focus light mode */
+input[type=checkbox]:focus {
+  @apply outline-none border-dark-blue shadow-none;
+}
+
+/* checkboxes :focus dark mode */
+input[type=checkbox]:focus {
+  @apply outline-none border-blue shadow-none;
+}
+
+/* basic button */
+.btn {
+  @apply flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md transition duration-150 ease-in-out;
+}
+
+/* basic button :hover light mode*/
+.btn:hover {
+  @apply text-owl-600;
+}
+
+/* basic button :hover dark mode*/
+.mode-dark .btn:hover {
+  @apply text-owl-900;
+}
+
+/* basic button :focus light mode*/
+.btn:focus {
+  @apply outline-none border-dark-blue;
+}
+
+/* basic button :focus dark mode */
+.mode-dark .btn:focus {
+  @apply outline-none border-blue;
+}
+
+/* primary button light mode */
+.btn-primary {
+  @apply bg-owl-300;
+}
+
+/* primary button dark mode*/
+.mode-dark .btn-primary {
+  @apply bg-owl-700;
+}
+
+/* primary button :hover */
+.btn-primary:hover {
+  @apply bg-blue;
+}
+
+/* secondary button light mode */
+.btn-secondary {
+  @apply bg-owl-200;
+}
+
+/* secondary button dark mode */
+.mode-dark .btn-secondary {
+  @apply bg-owl-800;
+}
+
+/* secondary button :hover */
+.btn-secondary:hover {
+  @apply bg-cyan;
+}
+
+/* headings */
+h1 {
+  @apply text-4xl leading-9;
+}
+
+h2 {
+  @apply text-3xl leading-9;
+}
+
+h3 {
+  @apply text-2xl leading-9;
+}
+
+/* unordered lists */
+ul {
+  @apply list-inside list-disc;
+}
+
+
+/* small screen breakpoint */
 @screen sm {
+  /* regular text inputs */
   input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
     @apply text-sm leading-5;
   }
 }
 
-/* Checkboxes */
-input[type=checkbox] {
-  @apply h-4 w-4 bg-900 border-gray-500 text-gray-400 transition duration-150 ease-in-out;
-}
-
-input[type=checkbox]:focus {
-  @apply outline-none border-blue;
-}
-
-/* Buttons */
-.btn {
-  @apply flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary transition duration-150 ease-in-out;
-}
-
-.btn:hover {
-  @apply text-gray-500
-}
-
-.btn:focus {
-  @apply outline-none border-indigo-700 shadow-outline-indigo;
-}
-
-.btn-primary {
-  @apply bg-500;
-}
-
-.btn-primary:hover {
-  @apply bg-blue;
-}
-
-.btn-secondary {
-  @apply bg-700
-}
-
-.btn-secondary:hover {
-  @apply bg-cyan;
-}
-
-/* Headings */
-h1 {
-  @apply text-4xl leading-9 text-primary;
-}
-
-h2 {
-  @apply text-3xl leading-9 text-primary;
-}
-
-h3 {
-  @apply text-2xl leading-9 text-default;
-}
-
-ul {
-  @apply text-default list-inside list-disc;
-}
+@tailwind utilities;

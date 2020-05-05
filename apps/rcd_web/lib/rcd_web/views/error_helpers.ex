@@ -10,7 +10,7 @@ defmodule RcdWeb.ErrorHelpers do
   """
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error), class: "text-red")
+      content_tag(:span, translate_error(error), class: "dark:text-red text-dark-red")
     end)
   end
 

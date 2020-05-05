@@ -1,13 +1,13 @@
 <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current text-primary" %>
+    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current dark:text-owl-200 text-owl-900" %>
     <h2 class="mt-6 text-center">
       Reset Your Password
     </h2>
   </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="py-8 px-4 sm:rounded sm:px-10 border border-gray-500">
+    <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900">
       <%= form_for @changeset, Routes.user_reset_password_path(@conn, :update, @token), fn f -> %>
         <%= if @changeset.action do %>
           <div class="alert alert-danger">
@@ -33,7 +33,7 @@
 
         <div class="mt-6">
           <span class="block w-full rounded-md shadow-sm">
-            <%= submit "Reset Password", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary hover:text-gray-500 bg-500 hover:bg-blue focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
+            <%= submit "Reset Password", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-owl-200 hover:text-owl-600 bg-500 hover:bg-blue focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
           </span>
         </div>
       <% end %>
@@ -41,17 +41,17 @@
       <div class="mt-6">
         <div class="relative">
           <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-500"></div>
+            <div class="w-full border-t border-owl-600"></div>
           </div>
           <div class="relative flex justify-center text-sm leading-5">
-            <span class="px-2 bg-900 text-default transition ease-in-out duration-500">
+            <span class="px-2 bg-900 text-owl-400 transition ease-in-out duration-500">
               or
             </span>
           </div>
         </div>
 
         <div class="mt-6 flex ">
-          <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary hover:text-gray-500 bg-700 hover:bg-cyan focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
+          <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-owl-200 hover:text-owl-600 bg-700 hover:bg-cyan focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
         </div>
       </div>
     </div>
