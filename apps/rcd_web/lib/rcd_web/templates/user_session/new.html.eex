@@ -53,7 +53,7 @@
           </div>
 
           <div class="text-sm leading-5">
-            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-owl-400 hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
+            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-owl-900 dark:text-owl-400 hover:text-dark-blue dark-hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
           </div>
         </div>
 

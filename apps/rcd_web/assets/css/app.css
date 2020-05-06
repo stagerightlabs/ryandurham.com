@@ -134,7 +134,6 @@ ul {
   @apply list-inside list-disc;
 }
 
-
 /* small screen breakpoint */
 @screen sm {
   /* regular text inputs */
