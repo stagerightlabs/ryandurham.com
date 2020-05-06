@@ -2,13 +2,15 @@ defmodule RcdWeb.Router do
   use RcdWeb, :router
 
   import RcdWeb.UserAuth
+  import Phoenix.LiveDashboard.Router
+
   use Plug.ErrorHandler
   use Sentry.Plug
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
@@ -57,6 +59,11 @@ defmodule RcdWeb.Router do
 
     get "/dashboard", PageController, :dashboard
     get "/todo", PageController, :todo
+  end
+
+  scope "/" do
+    pipe_through [:browser, :require_authenticated_user]
+    live_dashboard "/telemetry", metrics: RcdWeb.Telemetry
   end
 
   scope "/", RcdWeb do

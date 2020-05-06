@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ryandurham.com</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <%= csrf_meta_tag() %>
   </head>
   <body class="bg-owl-100 dark:bg-owl-900 text-owl-900 dark:text-owl-400">
     <header>

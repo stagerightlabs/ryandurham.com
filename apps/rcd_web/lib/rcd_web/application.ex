@@ -10,6 +10,8 @@ defmodule RcdWeb.Application do
     children = [
       # Start the PubSub system
       {Phoenix.PubSub, name: RcdWeb.PubSub},
+      # Telemetry
+      RcdWeb.Telemetry,
       # Start the endpoint when the application starts
       RcdWeb.Endpoint
       # Starts a worker by calling: RcdWeb.Worker.start_link(arg)
