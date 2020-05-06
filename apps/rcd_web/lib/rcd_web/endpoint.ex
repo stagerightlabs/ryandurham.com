@@ -1,6 +1,13 @@
 defmodule RcdWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rcd_web
 
+  @session_options [
+    store: :cookie,
+    key: "_rcd_web_key",
+    signing_salt: "rtG85p+F"
+  ]
+
+
   socket "/socket", RcdWeb.UserSocket,
     websocket: true,
     longpoll: false
@@ -37,10 +44,10 @@ defmodule RcdWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_rcd_web_key",
-    signing_salt: "rtG85p+F"
+  plug Plug.Session, @session_options
 
   plug RcdWeb.Router
+
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 end

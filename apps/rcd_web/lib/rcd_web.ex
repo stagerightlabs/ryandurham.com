@@ -22,6 +22,7 @@ defmodule RcdWeb do
       use Phoenix.Controller, namespace: RcdWeb
       import Plug.Conn
       import RcdWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias RcdWeb.Router.Helpers, as: Routes
     end
   end
@@ -41,6 +42,7 @@ defmodule RcdWeb do
 
       import RcdWeb.ErrorHelpers
       import RcdWeb.Gettext
+      import Phoenix.LiveView.Helpers
       alias RcdWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +52,7 @@ defmodule RcdWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
