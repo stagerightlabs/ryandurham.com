@@ -1,10 +1,10 @@
-<nav class="border-b border-gray-500" role="navigation" x-data="{ mobileMenuVisible: false, profileMenuVisible: false }">
+<nav class="border-b dark:border-owl-600 border-owl-900" role="navigation" x-data="{ mobileMenuVisible: false, profileMenuVisible: false }">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
         <button
-          class="inline-flex items-center justify-center p-2 rounded-md text-default hover:text-primary hover:bg-500 focus:outline-none focus:bg-500 focus:text-primary transition duration-150 ease-in-out"
+          class="inline-flex items-center justify-center p-2 rounded-md transition duration-150 ease-in-out"
           @click="mobileMenuVisible = !mobileMenuVisible"
         >
           <!-- Icon when menu is closed. -->
@@ -21,7 +21,7 @@
       </div>
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex-shrink-0 -center">
-          <%= render RcdWeb.IconsView, "_moose.html", class: "w-8 fill-current text-default" %>
+          <%= render RcdWeb.IconsView, "_moose.html", class: "w-8 fill-current dark:text-owl-400 text-owl-900" %>
         </div>
         <%# Desktop Nav Links %>
         <div class="hidden sm:block sm:ml-6">
@@ -33,14 +33,14 @@
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <%# Notifications %>
-        <%# <button class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+        <%# <button class="p-1 border-2 border-transparent text-owl-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
           <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
         </button> %>
 
         <%# Theme Toggle %>
-        <div class="flex font-display text-default p-2 z-10 justify-between">
+        <div class="flex font-display text-owl-900 dark:text-owl-400 p-2 z-10 justify-between">
           <%= render "_theme_toggle.html", assigns %>
         </div>
 
@@ -65,9 +65,9 @@
             x-transition:leave-end="transform opacity-0 scale-95"
             @click.away="profileMenuVisible = false"
           >
-            <div class="py-1 rounded-md bg-900 shadow-xs border border-gray-500">
-              <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:bg-500 transition duration-150 ease-in-out" %>
-              <%= link "Logout", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm leading-5 text-default hover:text-primary hover:bg-500 focus:outline-none focus:bg-500 transition duration-150 ease-in-out" %>
+            <div class="py-1 rounded-md bg-owl-100 dark:bg-owl-900 shadow-xs border border-owl-600">
+              <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "block px-4 py-2 text-sm leading-5 text-owl-900 dark:text-owl-400 dark-hover:text-owl-200  hover:bg-owl-200 dark-hover:bg-owl-800 transition duration-150 ease-in-out" %>
+              <%= link "Logout", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm leading-5 text-owl-900 dark:text-owl-400 dark-hover:text-owl-200  hover:bg-owl-200 dark-hover:bg-owl-800 transition duration-150 ease-in-out" %>
             </div>
           </div>
         </div>

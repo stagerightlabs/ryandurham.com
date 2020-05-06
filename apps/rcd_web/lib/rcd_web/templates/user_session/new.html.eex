@@ -1,6 +1,6 @@
 <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md mb-4">
-    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current text-primary" %>
+    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current dark:text-owl-200 text-owl-900" %>
     <h2 class="mt-6 text-center">
       Login
     </h2>
@@ -11,17 +11,17 @@
   </div>
 
   <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="py-8 px-4 sm:rounded sm:px-10 border border-gray-500">
+    <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900">
       <%= if @error_message do %>
         <div class="rounded-md border border-red p-4 mb-4">
           <div class="flex">
             <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-red" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 dark:text-red text-dark-red" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
               </svg>
             </div>
             <div class="ml-3">
-              <div class="text-sm leading-5 text-red">
+              <div class="text-sm leading-5 dark:text-red text-dark-red">
                 <p><%= @error_message %></p>
               </div>
             </div>
@@ -53,7 +53,7 @@
           </div>
 
           <div class="text-sm leading-5">
-            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-default hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
+            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-owl-400 hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
           </div>
         </div>
 

@@ -1,23 +1,23 @@
 <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current text-primary" %>
+    <%= render RcdWeb.IconsView, "_moose.html", class: "w-auto h-12 mx-auto fill-current dark:text-owl-200 text-owl-900" %>
     <h2 class="mt-6 text-center">
       Create a New Account
     </h2>
   </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="py-8 px-4 sm:rounded sm:px-10 border border-gray-500">
+    <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900">
       <%= if @changeset.action do %>
         <div class="rounded-md border border-red p-4 mb-4">
           <div class="flex">
             <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-red" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 dark:text-red text-dark-red" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
               </svg>
             </div>
             <div class="ml-3">
-              <div class="text-sm leading-5 text-red">
+              <div class="text-sm leading-5 dark:text-red text-dark-red">
                 <p>Oops, something went wrong! Please check the errors below.</p>
               </div>
             </div>
@@ -51,13 +51,13 @@
           </div>
 
           <div class="text-sm leading-5">
-            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-default hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
+            <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-owl-400 hover:text-blue focus:outline-none focus:underline transition ease-in-out duration-150" %>
           </div>
         </div>
 
         <div class="mt-6">
           <span class="block w-full rounded-md shadow-sm">
-            <%= submit "Register", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary hover:text-gray-500 bg-500 hover:bg-blue focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
+            <%= submit "Register", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-owl-200 hover:text-owl-600 bg-500 hover:bg-blue focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out" %>
           </span>
         </div>
       <% end %>
