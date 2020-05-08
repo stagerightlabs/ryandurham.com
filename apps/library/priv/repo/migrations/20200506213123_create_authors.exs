@@ -11,5 +11,7 @@ defmodule Admin.Repo.Migrations.CreateAuthors do
       timestamps()
     end
 
+    create unique_index(:authors, [:slug])
+
   end
 end

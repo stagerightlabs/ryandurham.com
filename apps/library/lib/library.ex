@@ -55,7 +55,16 @@ defmodule Library do
   """
   def create_author(attrs \\ %{}) do
     %Author{}
-    |> Author.changeset(attrs)
+    |> Author.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Create an author, bypassing the creation validation rules.
+  """
+  def force_create_author(attrs \\ %{}) do
+    %Author{}
+    |> Author.update_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -73,7 +82,7 @@ defmodule Library do
   """
   def update_author(%Author{} = author, attrs) do
     author
-    |> Author.changeset(attrs)
+    |> Author.update_changeset(attrs)
     |> Repo.update()
   end
 
@@ -103,6 +112,6 @@ defmodule Library do
 
   """
   def change_author(%Author{} = author, attrs \\ %{}) do
-    Author.changeset(author, attrs)
+    Author.update_changeset(author, attrs)
   end
 end

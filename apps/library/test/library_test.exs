@@ -6,7 +6,7 @@ defmodule Library.AuthorTest do
   describe "authors" do
     alias Library.Author
 
-    @valid_attrs %{name: "some name", slug: "some slug", sortable_name: "some sortable_name", url: "some url"}
+    @valid_attrs %{name: "some name", url: "some url", sortable_name: "name, some", slug: "some-name"}
     @update_attrs %{name: "some updated name", slug: "some updated slug", sortable_name: "some updated sortable_name", url: "some updated url"}
     @invalid_attrs %{name: nil, slug: nil, sortable_name: nil, url: nil}
 
@@ -14,7 +14,7 @@ defmodule Library.AuthorTest do
       {:ok, author} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Library.create_author()
+        |> Library.force_create_author()
 
       author
     end
@@ -30,10 +30,19 @@ defmodule Library.AuthorTest do
     end
 
     test "create_author/1 with valid data creates a author" do
+      assert {:ok, %Author{} = author} = Library.create_author(%{name: "some name", url: "some url"})
+      assert author.name == "some name"
+      assert author.slug == "some-name"
+      assert author.sortable_name == "name, some"
+      assert author.url == "some url"
+    end
+
+    test "create_author/1 with valid data creates a author with an incremental slug" do
+      author_fixture()
       assert {:ok, %Author{} = author} = Library.create_author(@valid_attrs)
       assert author.name == "some name"
-      assert author.slug == "some slug"
-      assert author.sortable_name == "some sortable_name"
+      assert author.slug == "some-name-1"
+      assert author.sortable_name == "name, some"
       assert author.url == "some url"
     end
 
@@ -48,6 +57,13 @@ defmodule Library.AuthorTest do
       assert author.slug == "some updated slug"
       assert author.sortable_name == "some updated sortable_name"
       assert author.url == "some updated url"
+    end
+
+    test "update_author/2 with existing slug returns error changeset" do
+      author_fixture(%{name: "some other author", slug: "existing-slug"})
+
+      author = author_fixture(%{slug: "author"})
+      assert {:error, %Ecto.Changeset{}} = Library.update_author(author, %{slug: "existing-slug"})
     end
 
     test "update_author/2 with invalid data returns error changeset" do
