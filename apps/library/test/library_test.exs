@@ -29,6 +29,11 @@ defmodule Library.AuthorTest do
       assert Library.get_author!(author.id) == author
     end
 
+    test "get_author_by_slug!/1 returns the author with given slug" do
+      author = author_fixture()
+      assert Library.get_author_by_slug!(author.slug) == author
+    end
+
     test "create_author/1 with valid data creates a author" do
       assert {:ok, %Author{} = author} = Library.create_author(%{name: "some name", url: "some url"})
       assert author.name == "some name"

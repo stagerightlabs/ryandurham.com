@@ -42,6 +42,22 @@ defmodule Library do
   def get_author!(id), do: Repo.get!(Author, id)
 
   @doc """
+  Gets a single author, queried by slug.
+
+  Raises `Ecto.NoResultsError` if the Author does not exist.
+
+  ## Examples
+
+      iex> get_author!("slug")
+      %Author{}
+
+      iex> get_author!("invalid")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_author_by_slug!(slug), do: Repo.get_by!(Author, slug: slug)
+
+  @doc """
   Creates a author.
 
   ## Examples
