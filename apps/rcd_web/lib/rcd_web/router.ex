@@ -59,6 +59,8 @@ defmodule RcdWeb.Router do
 
     get "/dashboard", PageController, :dashboard
     get "/todo", PageController, :todo
+
+    resources "/authors", AuthorController
   end
 
   scope "/" do
