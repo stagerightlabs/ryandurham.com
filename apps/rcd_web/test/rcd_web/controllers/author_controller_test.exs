@@ -1,7 +1,7 @@
 defmodule RcdWeb.AuthorControllerTest do
   use RcdWeb.ConnCase
 
-  alias Admin.Library
+  alias Library
 
   @create_attrs %{name: "some name", slug: "some slug", sortable_name: "some sortable_name", url: "some url"}
   @update_attrs %{name: "some updated name", slug: "some updated slug", sortable_name: "some updated sortable_name", url: "some updated url"}
@@ -10,6 +10,16 @@ defmodule RcdWeb.AuthorControllerTest do
   def fixture(:author) do
     {:ok, author} = Library.create_author(@create_attrs)
     author
+  end
+
+  setup %{conn: conn} do
+    # Explicitly get a connection before each test
+    # https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Admin.Repo)
+    # Setting the shared mode must be done only after checkout
+    Ecto.Adapters.SQL.Sandbox.mode(Admin.Repo, {:shared, self()})
+
+    RcdWeb.ConnCase.register_and_login_user(%{conn: conn})
   end
 
   describe "index" do
