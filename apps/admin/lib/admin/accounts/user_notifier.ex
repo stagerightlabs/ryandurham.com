@@ -1,6 +1,5 @@
 defmodule Admin.Accounts.UserNotifier do
   import Bamboo.Email
-  import Bamboo.Phoenix
 
   # For simplicity, this module simply logs messages to the terminal.
   # You should replace it by a proper e-mail or notification tool, such as:
