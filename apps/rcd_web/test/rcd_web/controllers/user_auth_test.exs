@@ -5,6 +5,9 @@ defmodule RcdWeb.UserAuthTest do
   alias RcdWeb.UserAuth
   import Admin.AccountsFixtures
 
+  @landing_url "/users/settings"
+  @login_url "/users/login"
+
   setup %{conn: conn} do
     # Explicitly get a connection before each test
     # https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html
@@ -24,7 +27,7 @@ defmodule RcdWeb.UserAuthTest do
     test "stores the user token in the session", %{conn: conn, user: user} do
       conn = UserAuth.login_user(conn, user)
       assert token = get_session(conn, :user_token)
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @landing_url
       assert Accounts.get_user_by_session_token(token)
     end
 
@@ -62,7 +65,7 @@ defmodule RcdWeb.UserAuthTest do
       refute get_session(conn, :user_token)
       refute conn.cookies["user_remember_me"]
       assert %{max_age: 0} = conn.resp_cookies["user_remember_me"]
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       refute Accounts.get_user_by_session_token(user_token)
     end
 
@@ -70,7 +73,7 @@ defmodule RcdWeb.UserAuthTest do
       conn = conn |> fetch_cookies() |> UserAuth.logout_user()
       refute get_session(conn, :user_token)
       assert %{max_age: 0} = conn.resp_cookies["user_remember_me"]
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
     end
   end
 
@@ -109,7 +112,7 @@ defmodule RcdWeb.UserAuthTest do
     test "redirects if user is authenticated", %{conn: conn, user: user} do
       conn = conn |> assign(:current_user, user) |> UserAuth.redirect_if_user_is_authenticated([])
       assert conn.halted
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @landing_url
     end
 
     test "does not redirect if user is not authenticated", %{conn: conn} do

@@ -1,3 +1,3 @@
 defmodule Admin.Email do
-  import Bamboo.Email
+  # import Bamboo.Email
 end

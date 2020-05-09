@@ -3,7 +3,10 @@ defmodule RcdWeb.UserConfirmationControllerTest do
 
   alias Admin.Accounts
   alias Admin.Repo
+
   import Admin.AccountsFixtures
+
+  @login_url "/users/login"
 
   setup do
     # Explicitly get a connection before each test
@@ -31,7 +34,7 @@ defmodule RcdWeb.UserConfirmationControllerTest do
           "user" => %{"email" => user.email}
         })
 
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "If your e-mail is in our system"
       assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context == "confirm"
     end
@@ -44,7 +47,7 @@ defmodule RcdWeb.UserConfirmationControllerTest do
           "user" => %{"email" => user.email}
         })
 
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "If your e-mail is in our system"
       refute Repo.get_by(Accounts.UserToken, user_id: user.id)
     end
@@ -55,7 +58,7 @@ defmodule RcdWeb.UserConfirmationControllerTest do
           "user" => %{"email" => "unknown@example.com"}
         })
 
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "If your e-mail is in our system"
       assert Repo.all(Accounts.UserToken) == []
     end
@@ -69,20 +72,20 @@ defmodule RcdWeb.UserConfirmationControllerTest do
         end)
 
       conn = get(conn, Routes.user_confirmation_path(conn, :confirm, token))
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "Account confirmed successfully"
       assert Accounts.get_user!(user.id).confirmed_at
       refute get_session(conn, :user_token)
       assert Repo.all(Accounts.UserToken) == []
 
       conn = get(conn, Routes.user_confirmation_path(conn, :confirm, token))
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :error) =~ "Confirmation link is invalid or it has expired"
     end
 
     test "does not confirm email with invalid token", %{conn: conn, user: user} do
       conn = get(conn, Routes.user_confirmation_path(conn, :confirm, "oops"))
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :error) =~ "Confirmation link is invalid or it has expired"
       refute Accounts.get_user!(user.id).confirmed_at
     end

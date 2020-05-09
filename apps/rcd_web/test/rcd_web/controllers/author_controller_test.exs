@@ -3,8 +3,18 @@ defmodule RcdWeb.AuthorControllerTest do
 
   alias Library
 
-  @create_attrs %{name: "some name", slug: "some slug", sortable_name: "some sortable_name", url: "some url"}
-  @update_attrs %{name: "some updated name", slug: "some-updated-slug", sortable_name: "some updated sortable_name", url: "some updated url"}
+  @create_attrs %{
+    name: "some name",
+    slug: "some slug",
+    sortable_name: "some sortable_name",
+    url: "some url"
+  }
+  @update_attrs %{
+    name: "some updated name",
+    slug: "some-updated-slug",
+    sortable_name: "some updated sortable_name",
+    url: "some updated url"
+  }
   @invalid_attrs %{name: nil, slug: nil, sortable_name: nil, url: nil}
 
   def fixture(:author) do
@@ -85,6 +95,7 @@ defmodule RcdWeb.AuthorControllerTest do
     test "deletes chosen author", %{conn: conn, author: author} do
       conn = delete(conn, Routes.author_path(conn, :delete, author.slug))
       assert redirected_to(conn) == Routes.author_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.author_path(conn, :show, author.slug))
       end

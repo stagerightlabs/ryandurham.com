@@ -1,9 +1,6 @@
 defmodule Library.Seeds do
-
   alias Library.Author
   alias Library.Repo
-
-  import Ecto.Query, only: [from: 2]
 
   def run do
     seed_authors()
@@ -16,14 +13,22 @@ defmodule Library.Seeds do
     %{name: "Alan Schom", sortable_name: "schom, alan", slug: "alan-schom"},
     %{name: "Alex Stone", sortable_name: "stone, alex", slug: "alex-stone"},
     %{name: "Alice Sebold", sortable_name: "sebold, alice", slug: "alice-sebold"},
-    %{name: "Andreas M. Antonopoulos", sortable_name: "antonopoulos, andreas m.", slug: "andreas-m-antonopoulos"},
+    %{
+      name: "Andreas M. Antonopoulos",
+      sortable_name: "antonopoulos, andreas m.",
+      slug: "andreas-m-antonopoulos"
+    },
     %{name: "Andrew Hodges", sortable_name: "hodges, andrew", slug: "andrew-hodges"},
     %{name: "Andrew Mayne", sortable_name: "mayne, andrew", slug: "andrew-mayne"},
     %{name: "Andy Weir", sortable_name: "weir, andy", slug: "andy-weir"},
     %{name: "Anthony Bourdain", sortable_name: "bourdain, anthony", slug: "anthony-bourdain"},
     %{name: "Antony Sher", sortable_name: "sher, antony", slug: "antony-sher"},
     %{name: "Armin A. Brott", sortable_name: "brott, armin a.", slug: "armin-a-brott"},
-    %{name: "Arthur Conan Doyle", sortable_name: "doyle, arthur conan", slug: "arthur-conan-doyle"},
+    %{
+      name: "Arthur Conan Doyle",
+      sortable_name: "doyle, arthur conan",
+      slug: "arthur-conan-doyle"
+    },
     %{name: "Arthur Golden", sortable_name: "golden, aurthur", slug: "arthur-golden"},
     %{name: "Ashlee Vance", sortable_name: "vance, ashlee", slug: "ashlee-vance"},
     %{name: "Barack Obama", sortable_name: "obama, barack", slug: "barack-obama"},
@@ -47,8 +52,16 @@ defmodule Library.Seeds do
     %{name: "Charles C. Mann", sortable_name: "mann, charles c.", slug: "charles-c-mann"},
     %{name: "Charles Petzold", sortable_name: "petzold, charles", slug: "charles-petzold"},
     %{name: "Chris McCord", sortable_name: "mccord, chris", slug: "chris-mccord"},
-    %{name: "Christian Grobmeier", sortable_name: "grobmeier, christian", slug: "christian-grobmeier"},
-    %{name: "Christopher Hitchens", sortable_name: "hitchens, christopher", slug: "christopher-hitchens"},
+    %{
+      name: "Christian Grobmeier",
+      sortable_name: "grobmeier, christian",
+      slug: "christian-grobmeier"
+    },
+    %{
+      name: "Christopher Hitchens",
+      sortable_name: "hitchens, christopher",
+      slug: "christopher-hitchens"
+    },
     %{name: "Chuck Palahniuk", sortable_name: "palahniuk, chuck", slug: "chuck-palahniuk"},
     %{name: "Claire Willett", sortable_name: "willett, claire", slug: "claire-willett"},
     %{name: "Cooper Moo", sortable_name: "moo, cooper", slug: "cooper-moo"},
@@ -62,7 +75,11 @@ defmodule Library.Seeds do
     %{name: "Dave Gibbons", sortable_name: "gibbons, dave", slug: "dave-gibbons"},
     %{name: "Dave Isay", sortable_name: "isay, dave", slug: "dave-isay"},
     %{name: "David Grann", sortable_name: "grann, david", slug: "david-grann"},
-    %{name: "David Herbert Donald", sortable_name: "donald, david herbert", slug: "david-herbert-donald"},
+    %{
+      name: "David Herbert Donald",
+      sortable_name: "donald, david herbert",
+      slug: "david-herbert-donald"
+    },
     %{name: "David Mitchell", sortable_name: "mitchell, david", slug: "david-mitchell"},
     %{name: "David Weber", sortable_name: "weber, david", slug: "david-weber"},
     %{name: "Denise Kiernam", sortable_name: "kiernam, denise", slug: "denise-kiernam"},
@@ -82,8 +99,16 @@ defmodule Library.Seeds do
     %{name: "Eve Curie", sortable_name: "curie, eve", slug: "eve-curie"},
     %{name: "Frank Herbert", sortable_name: "herbert, frank", slug: "frank-herbert"},
     %{name: "Frank McCourt", sortable_name: "mccourt, frank", slug: "frank-mccourt"},
-    %{name: "Frederick P. Brooks", sortable_name: "brooks, frederick p.", slug: "frederick-p-brooks"},
-    %{name: "Gabrielle Hamilton", sortable_name: "hamilton, gabrielle", slug: "gabrielle-hamilton"},
+    %{
+      name: "Frederick P. Brooks",
+      sortable_name: "brooks, frederick p.",
+      slug: "frederick-p-brooks"
+    },
+    %{
+      name: "Gabrielle Hamilton",
+      sortable_name: "hamilton, gabrielle",
+      slug: "gabrielle-hamilton"
+    },
     %{name: "Garrett Hardin", sortable_name: "hardin, garrett", slug: "garrett-hardin"},
     %{name: "Geoffrey Lessel", sortable_name: "lessel, geoffrey", slug: "geoffrey-lessel"},
     %{name: "George Orwell", sortable_name: "orwell, george", slug: "george-orwell"},
@@ -95,7 +120,11 @@ defmodule Library.Seeds do
     %{name: "Helen Epstein", sortable_name: "epstein, helen", slug: "helen-epstein"},
     %{name: "Huggy Rao", sortable_name: "rao, huggy", slug: "huggy-rao"},
     %{name: "J.D. Robb", sortable_name: "robb, j.d.", slug: "j-d-robb"},
-    %{name: "J. David Eisenberg", sortable_name: "eisenberg, david j.", slug: "j-david-eisenberg"},
+    %{
+      name: "J. David Eisenberg",
+      sortable_name: "eisenberg, david j.",
+      slug: "j-david-eisenberg"
+    },
     %{name: "J.D. Vance", sortable_name: "vance, j.d.", slug: "jd-vance"},
     %{name: "J.K. Rowling", sortable_name: "rowling, j.k.", slug: "jk-rowling"},
     %{name: "Jack Herer", sortable_name: "herer, jack", slug: "jack-herer"},
@@ -109,7 +138,11 @@ defmodule Library.Seeds do
     %{name: "John Adams", sortable_name: "adams, john", slug: "john-adams"},
     %{name: "John D. Snider", sortable_name: "d. snider, John", slug: "john-d-snider"},
     %{name: "John Irving", sortable_name: "irving, john", slug: "john-irving"},
-    %{name: "John Kennedy Toole", sortable_name: "toole, john kennedy", slug: "john-kennedy-toole"},
+    %{
+      name: "John Kennedy Toole",
+      sortable_name: "toole, john kennedy",
+      slug: "john-kennedy-toole"
+    },
     %{name: "John Perkins", sortable_name: "perkins, john", slug: "john-perkins"},
     %{name: "John Trombold", sortable_name: "trombold, john", slug: "john-trombold"},
     %{name: "John Updike", sortable_name: "updike, john", slug: "john-updike"},
@@ -132,13 +165,21 @@ defmodule Library.Seeds do
     %{name: "Lawrence Wright", sortable_name: "wright, lawrence", slug: "lawrence-wright"},
     %{name: "Leo Hsu", sortable_name: "hsu, leo", slug: "leo-hsu"},
     %{name: "Lisa A. Phillips", sortable_name: "phillips, lisa a.", slug: "lisa-a-phillips"},
-    %{name: "Louis De Bernieres", sortable_name: "de bernieres, louis", slug: "louis-de-bernieres"},
+    %{
+      name: "Louis De Bernieres",
+      sortable_name: "de bernieres, louis",
+      slug: "louis-de-bernieres"
+    },
     %{name: "Luc Perkins", sortable_name: "perkins, luc", slug: "luc-perkins"},
     %{name: "M.T. Anderson", sortable_name: "anderson, m.t.", slug: "mt-anderson"},
     %{name: "Malcolm Gladwell", sortable_name: "gladwell, malcolm", slug: "malcolm-gladwell"},
     %{name: "Marcus Aurelius", sortable_name: "aurelius, marcus", slug: "marcus-aurelius"},
     %{name: "Margaret Cheney", sortable_name: "cheney, margaret", slug: "margaret-cheney"},
-    %{name: "Margot Lee Shetterly", sortable_name: "lee shetterly, margot", slug: "margot-lee-shetterly"},
+    %{
+      name: "Margot Lee Shetterly",
+      sortable_name: "lee shetterly, margot",
+      slug: "margot-lee-shetterly"
+    },
     %{name: "Maria Konnikova", sortable_name: "konnikova, maria", slug: "maria-konnikova"},
     %{name: "Mark Bittman", sortable_name: "bittman, mark", slug: "mark-bittman"},
     %{name: "Mark Frost", sortable_name: "frost, mark", slug: "mark-frost"},
@@ -154,7 +195,11 @@ defmodule Library.Seeds do
     %{name: "Mike Shanahan", sortable_name: "shanahan, mike", slug: "mike-shanahan"},
     %{name: "Myla Kabat-Zinn", sortable_name: "kabat-zinn, myla", slug: "myla-kabat-zinn"},
     %{name: "Neal Stephenson", sortable_name: "stephenson, neal", slug: "neal-stephenson"},
-    %{name: "Neil Degrasse Tyson", sortable_name: "tyson, neil degrasse", slug: "neil-degrasse-tyson"},
+    %{
+      name: "Neil Degrasse Tyson",
+      sortable_name: "tyson, neil degrasse",
+      slug: "neil-degrasse-tyson"
+    },
     %{name: "Neil Gaiman", sortable_name: "gaiman, neil", slug: "neil-gaiman"},
     %{name: "Nicole Galland", sortable_name: "galland, nicole", slug: "nicole-galland"},
     %{name: "Noel Kingsbury", sortable_name: "kingsbury, noel", slug: "noel-kingsbury"},
@@ -183,7 +228,11 @@ defmodule Library.Seeds do
     %{name: "Sara Gruen", sortable_name: "gruen, sara", slug: "sara-gruen"},
     %{name: "Saša Jurić", sortable_name: "jurić, saša", slug: "sasa-juric"},
     %{name: "Simon St. Laurent", sortable_name: "st. laurent, Simon", slug: "simon-st-laurent"},
-    %{name: "Stephen E. Ambrose", sortable_name: "ambrose, stephen e.", slug: "stephen-e-ambrose"},
+    %{
+      name: "Stephen E. Ambrose",
+      sortable_name: "ambrose, stephen e.",
+      slug: "stephen-e-ambrose"
+    },
     %{name: "Stephen Hawking", sortable_name: "hawking, stephen", slug: "stephen-hawking"},
     %{name: "Stephen Johnson", sortable_name: "johnson, stephen", slug: "stephen-johnson"},
     %{name: "Stephen King", sortable_name: "king, stephen", slug: "stephen-king"},
@@ -192,7 +241,11 @@ defmodule Library.Seeds do
     %{name: "Stieg Larson", sortable_name: "larson, stieg", slug: "stieg-larson"},
     %{name: "Susan Cain", sortable_name: "cain, susan", slug: "susan-cain"},
     %{name: "Suzanne Collins", sortable_name: "collins, suzanne", slug: "suzanne-collins"},
-    %{name: "Svetlana Alexievich", sortable_name: "alexievich, svetlana", slug: "svetlana-alexievich"},
+    %{
+      name: "Svetlana Alexievich",
+      sortable_name: "alexievich, svetlana",
+      slug: "svetlana-alexievich"
+    },
     %{name: "Ta-Nehisi Coates", sortable_name: "coates, ta-nehisi", slug: "ta-nehisi-coates"},
     %{name: "Thomas Cahill", sortable_name: "cahill, thomas", slug: "thomas-cahill"},
     %{name: "Thomas Harris", sortable_name: "harris, thomas", slug: "thomas-harris"},
@@ -207,20 +260,24 @@ defmodule Library.Seeds do
     %{name: "Ursula K. Le Guin", sortable_name: "le guin, ursula k.", slug: "ursula-k-le-guin"},
     %{name: "Viktor E. Frankl", sortable_name: "frankl, viktor e.", slug: "viktor-e-frankl"},
     %{name: "Walter Isaacson", sortable_name: "isaacson, walter", slug: "walter-isaacson"},
-    %{name: "Walter Jon Williams", sortable_name: "williams, walter jon", slug: "walter-jon-williams"},
+    %{
+      name: "Walter Jon Williams",
+      sortable_name: "williams, walter jon",
+      slug: "walter-jon-williams"
+    },
     %{name: "William Gibson", sortable_name: "gibson, william", slug: "william-gibson"},
     %{name: "William L. Shirer", sortable_name: "shirer, william l.", slug: "william-l-shirer"},
     %{name: "William Strunk Jr", sortable_name: "strunk jr, william", slug: "william-strunk-jr"},
     %{name: "Wilson Rawls", sortable_name: "rawls, wilson", slug: "wilson-rawls"},
-    %{name: "Zeynep Ton", sortable_name: "ton, zeynep", slug: "zeynep-ton"},
+    %{name: "Zeynep Ton", sortable_name: "ton, zeynep", slug: "zeynep-ton"}
   ]
 
   def seed_authors do
     Enum.each(@author_data, fn author ->
       struct(Author, author)
-      |>Repo.insert(on_conflict: :nothing)
+      |> Repo.insert(on_conflict: :nothing)
     end)
+
     IO.puts("inserted authors")
   end
-
 end

@@ -3,7 +3,10 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
 
   alias Admin.Accounts
   alias Admin.Repo
+
   import Admin.AccountsFixtures
+
+  @login_url "/users/login"
 
   setup do
     # Explicitly get a connection before each test
@@ -19,7 +22,7 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
     test "renders the reset password page", %{conn: conn} do
       conn = get(conn, Routes.user_reset_password_path(conn, :new))
       response = html_response(conn, 200)
-      assert response =~ "<h1>Forgot your password?</h1>"
+      assert response =~ "<h2 class=\"mt-6 text-center\">Forgot Your Password?</h2>"
     end
   end
 
@@ -31,7 +34,7 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
           "user" => %{"email" => user.email}
         })
 
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "If your e-mail is in our system"
       assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context == "reset_password"
     end
@@ -42,7 +45,7 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
           "user" => %{"email" => "unknown@example.com"}
         })
 
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       assert get_flash(conn, :info) =~ "If your e-mail is in our system"
       assert Repo.all(Accounts.UserToken) == []
     end
@@ -60,7 +63,7 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
 
     test "renders reset password", %{conn: conn, token: token} do
       conn = get(conn, Routes.user_reset_password_path(conn, :edit, token))
-      assert html_response(conn, 200) =~ "<h1>Reset password</h1>"
+      assert html_response(conn, 200) =~ "<h2 class=\"mt-6 text-center\">Reset Your Password</h2>"
     end
 
     test "does not render reset password with invalid token", %{conn: conn} do
@@ -105,7 +108,7 @@ defmodule RcdWeb.UserResetPasswordControllerTest do
         })
 
       response = html_response(conn, 200)
-      assert response =~ "<h1>Reset password</h1>"
+      assert response =~ "<h2 class=\"mt-6 text-center\">Reset Your Password</h2>"
       assert response =~ "should be at least 12 character(s)"
       assert response =~ "does not match password"
     end

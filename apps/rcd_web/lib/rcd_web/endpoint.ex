@@ -8,7 +8,6 @@ defmodule RcdWeb.Endpoint do
     signing_salt: "rtG85p+F"
   ]
 
-
   socket "/socket", RcdWeb.UserSocket,
     websocket: true,
     longpoll: false
@@ -53,6 +52,5 @@ defmodule RcdWeb.Endpoint do
 
   plug RcdWeb.Router
 
-  socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]]
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 end
