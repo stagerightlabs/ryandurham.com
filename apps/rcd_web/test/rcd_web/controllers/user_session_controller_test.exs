@@ -3,6 +3,9 @@ defmodule RcdWeb.UserSessionControllerTest do
 
   import Admin.AccountsFixtures
 
+  @landing_url "/users/settings"
+  @login_url "/users/login"
+
   setup do
     # Explicitly get a connection before each test
     # https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html
@@ -17,14 +20,12 @@ defmodule RcdWeb.UserSessionControllerTest do
     test "renders login page", %{conn: conn} do
       conn = get(conn, Routes.user_session_path(conn, :new))
       response = html_response(conn, 200)
-      assert response =~ "<h1>Login</h1>"
-      assert response =~ "Login</a>"
-      assert response =~ "Register</a>"
+      assert response =~ "<h2 class=\"mt-6 text-center\">Login</h2>"
     end
 
     test "redirects if already logged in", %{conn: conn, user: user} do
       conn = conn |> login_user(user) |> get(Routes.user_session_path(conn, :new))
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @landing_url
     end
   end
 
@@ -36,14 +37,7 @@ defmodule RcdWeb.UserSessionControllerTest do
         })
 
       assert get_session(conn, :user_token)
-      assert redirected_to(conn) =~ "/"
-
-      # Now do a logged in request and assert on the menu
-      conn = get(conn, "/")
-      response = html_response(conn, 200)
-      assert response =~ user.email
-      assert response =~ "Settings</a>"
-      assert response =~ "Logout</a>"
+      assert redirected_to(conn) =~ @landing_url
     end
 
     test "logs the user in with remember me", %{conn: conn, user: user} do
@@ -67,7 +61,7 @@ defmodule RcdWeb.UserSessionControllerTest do
         })
 
       response = html_response(conn, 200)
-      assert response =~ "<h1>Login</h1>"
+      assert response =~ "<h2 class=\"mt-6 text-center\">Login</h2>"
       assert response =~ "Invalid e-mail or password"
     end
   end
@@ -80,7 +74,7 @@ defmodule RcdWeb.UserSessionControllerTest do
 
     test "logs the user out", %{conn: conn, user: user} do
       conn = conn |> login_user(user) |> delete(Routes.user_session_path(conn, :delete))
-      assert redirected_to(conn) == "/"
+      assert redirected_to(conn) == @login_url
       refute get_session(conn, :user_token)
       assert get_flash(conn, :info) =~ "Logged out successfully"
     end
