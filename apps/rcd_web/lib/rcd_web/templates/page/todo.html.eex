@@ -5,3 +5,12 @@
   <li>Email templates</li>
   <li>404 Page</li>
 </ul>
+
+
+<h1 class="my-8">Notes</h1>
+
+<ul>
+  <li><a href="https://tech.forwardfinancing.com/elixir/ecto/postgres/fuzzy-search/2017/12/20/fuzzy-search-in-elixir.html">https://tech.forwardfinancing.com/elixir/ecto/postgres/fuzzy-search/2017/12/20/fuzzy-search-in-elixir.html</a></li>
+  <li><a href="http://nathanmlong.com/2018/01/fast-fulltext-search-with-ecto-and-postgresql/">http://nathanmlong.com/2018/01/fast-fulltext-search-with-ecto-and-postgresql/</a></li>
+  <li><a href="https://www.unix.com/unix-for-dummies-questions-and-answers/138445-unix-command-insert-double-quotes-delimited-file.html">https://www.unix.com/unix-for-dummies-questions-and-answers/138445-unix-command-insert-double-quotes-delimited-file.html</a></li>
+</ul>

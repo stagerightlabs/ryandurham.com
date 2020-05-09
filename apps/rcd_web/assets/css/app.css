@@ -63,7 +63,7 @@ input[type=checkbox]:focus {
 
 /* basic button */
 .btn {
-  @apply flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md transition duration-150 ease-in-out;
+  @apply flex h-10 py-2 px-4 border border-transparent text-sm content-center items-center font-medium rounded-md transition duration-150 ease-in-out;
 }
 
 /* basic button :hover light mode*/
@@ -116,30 +116,125 @@ input[type=checkbox]:focus {
   @apply bg-cyan;
 }
 
+/* danger button light mode */
+.btn-danger {
+  @apply bg-owl-200;
+}
+
+/* danger button dark mode */
+.mode-dark .btn-danger {
+  @apply bg-owl-800;
+}
+
+/* danger button :hover */
+.btn-danger:hover {
+  @apply bg-red;
+}
+
 /* headings */
 h1 {
-  @apply text-4xl leading-9;
+  @apply text-2xl leading-9;
 }
 
 h2 {
-  @apply text-3xl leading-9;
+  @apply text-xl leading-9;
 }
 
 h3 {
-  @apply text-2xl leading-9;
+  @apply text-lg leading-9;
 }
 
 /* unordered lists */
 ul {
-  @apply list-inside list-disc;
+  @apply list-inside list-disc p-2;
+}
+
+/* links */
+a:hover, a:focus, a:active {
+  @apply text-blue;
+}
+
+/* container */
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+/* main content */
+main {
+  @apply max-w-3xl mx-auto;
+}
+
+/* page headings */
+main header {
+  @apply my-12;
+}
+
+/* page heading title */
+main header h1 {
+  @apply w-full;
+}
+
+/* page heading aside */
+main header aside {
+  @apply w-full flex mt-4;
 }
 
 /* small screen breakpoint */
 @screen sm {
+
+  /* container */
+  .container {
+    @apply px-6;
+  }
+
+  /* headings */
+  h1 {
+    @apply text-4xl leading-9;
+  }
+
+  h2 {
+    @apply text-3xl leading-9;
+  }
+
+  h3 {
+    @apply text-2xl leading-9;
+  }
+
   /* regular text inputs */
   input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]) {
     @apply text-sm leading-5;
   }
+}
+
+/* medium screen breakpoint */
+@screen md {
+
+  /* page headings */
+  main header {
+    @apply flex justify-between;
+  }
+
+  /* page heading title */
+  main header h1 {
+    @apply w-4/5;
+  }
+
+  /* page heading aside */
+  main header aside {
+    @apply w-1/5 justify-end mt-0;
+  }
+
+}
+
+
+/* large screen breakpoint */
+@screen lg {
+
+  /* container */
+  .container {
+    @apply px-8;
+  }
+
 }
 
 @tailwind utilities;

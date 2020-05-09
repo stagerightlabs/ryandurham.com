@@ -14,14 +14,12 @@
         <%= render "_portal_nav.html", assigns %>
       </nav>
     </header>
-    <main role="main">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto">
-          <%= render "_flash_messages.html", assigns %>
-          <%= @inner_content %>
-        </div>
-      </div>
-    </main>
+    <div class="container">
+      <main role="main">
+        <%= render "_flash_messages.html", assigns %>
+        <%= @inner_content %>
+      </main>
+    </div>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

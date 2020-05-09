@@ -1,5 +1,6 @@
 defmodule RcdWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rcd_web
+  use Sentry.Phoenix.Endpoint
 
   @session_options [
     store: :cookie,

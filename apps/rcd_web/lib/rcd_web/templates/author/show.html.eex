@@ -1,0 +1,27 @@
+<header>
+  <h1><%= @author.name %></h1>
+  <aside>
+    <%= link "Edit", to: Routes.author_path(@conn, :edit, @author.slug), class: "btn btn-primary" %>
+    <%= link "Delete", to: Routes.author_path(@conn, :delete, @author.slug), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger ml-2" %>
+    <%= link "Index", to: Routes.author_path(@conn, :index), class: "btn btn-secondary ml-2" %>
+  </aside>
+</header>
+
+<ul>
+
+  <li>
+    <strong>Sortable name:</strong>
+    <%= @author.sortable_name %>
+  </li>
+
+  <li>
+    <strong>Slug:</strong>
+    <%= @author.slug %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @author.url %>
+  </li>
+
+</ul>

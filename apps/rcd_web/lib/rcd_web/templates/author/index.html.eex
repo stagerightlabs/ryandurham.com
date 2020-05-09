@@ -1,0 +1,19 @@
+<header>
+  <h1>Authors</h1>
+  <aside>
+    <a href="<%= Routes.author_path(@conn, :new) %>" class="btn btn-primary">
+      <%= render RcdWeb.IconsView, "_plus.html", class: "w-4 mr-2" %>
+      New Author
+    </a>
+  </aside>
+</header>
+
+<%= for %{letter: letter, group: group, final: final} <- @authors do %>
+  <div class="mb-4">
+    <h2 class="mb-2"><%= letter %></h2>
+    <%= for author <- group do %>
+      <%= link author.name, to: Routes.author_path(@conn, :show, author.slug) %>
+      <%= if final != author, do: ', ' %>
+    <% end %>
+  </div>
+<% end %>
