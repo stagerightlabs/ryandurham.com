@@ -70,7 +70,7 @@ defmodule Utilities do
   """
   def string_to_slug(str) when is_binary(str) do
     str
-    |> String.normalize(:nfd)
+    |> :unicode.characters_to_nfd_binary()
     |> String.trim()
     |> String.downcase()
     |> String.replace(~r/[^a-z-\s]/u, "")
