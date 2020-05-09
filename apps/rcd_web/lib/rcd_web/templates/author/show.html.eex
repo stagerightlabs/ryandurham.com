@@ -1,11 +1,13 @@
-<h1>Show Author</h1>
+<header>
+  <h1><%= @author.name %></h1>
+  <aside>
+    <%= link "Edit", to: Routes.author_path(@conn, :edit, @author.slug), class: "btn btn-primary" %>
+    <%= link "Delete", to: Routes.author_path(@conn, :delete, @author.slug), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger ml-2" %>
+    <%= link "Index", to: Routes.author_path(@conn, :index), class: "btn btn-secondary ml-2" %>
+  </aside>
+</header>
 
 <ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @author.name %>
-  </li>
 
   <li>
     <strong>Sortable name:</strong>
@@ -23,6 +25,3 @@
   </li>
 
 </ul>
-
-<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span>
-<span><%= link "Back", to: Routes.author_path(@conn, :index) %></span>

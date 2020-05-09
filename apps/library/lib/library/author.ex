@@ -41,6 +41,7 @@ defmodule Library.Author do
       _ ->
         [first, last] =
           name
+          |> String.downcase()
           |> String.split_at(last_index(name, " "))
           |> Tuple.to_list()
           |> Enum.map(fn str -> String.trim(str) end)

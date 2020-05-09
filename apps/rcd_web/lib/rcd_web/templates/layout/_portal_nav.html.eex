@@ -28,6 +28,7 @@
           <div class="flex">
             <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :dashboard)  %>
             <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :todo, "ml-2") %>
+            <%= link "Authors", to: Routes.author_path(@conn, :index), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :index, "ml-2") %>
           </div>
         </div>
       </div>

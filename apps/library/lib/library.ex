@@ -22,7 +22,7 @@ defmodule Library do
 
   """
   def list_authors do
-    Repo.all(Author)
+    Repo.all(from(a in Author, order_by: a.sortable_name))
   end
 
   @doc """

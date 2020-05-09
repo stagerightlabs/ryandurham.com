@@ -60,7 +60,14 @@ defmodule RcdWeb.Router do
     get "/dashboard", PageController, :dashboard
     get "/todo", PageController, :todo
 
-    resources "/authors", AuthorController
+    get "/authors", AuthorController, :index
+    get "/authors/new", AuthorController, :new
+    post "/authors", AuthorController, :create
+    get "/authors/:slug", AuthorController, :show
+    get "/authors/:slug/edit", AuthorController, :edit
+    patch "/authors/:slug", AuthorController, :update
+    put "/authors/:slug", AuthorController, :update
+    delete "/authors/:slug", AuthorController, :delete
   end
 
   scope "/" do

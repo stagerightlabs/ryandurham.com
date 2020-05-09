@@ -35,8 +35,8 @@ defmodule Library.AuthorTest do
     end
 
     test "create_author/1 with valid data creates a author" do
-      assert {:ok, %Author{} = author} = Library.create_author(%{name: "some name", url: "some url"})
-      assert author.name == "some name"
+      assert {:ok, %Author{} = author} = Library.create_author(%{name: "Some Name", url: "some url"})
+      assert author.name == "Some Name"
       assert author.slug == "some-name"
       assert author.sortable_name == "name, some"
       assert author.url == "some url"
