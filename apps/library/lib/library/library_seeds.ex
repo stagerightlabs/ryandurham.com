@@ -3,8 +3,6 @@ defmodule Library.Seeds do
   alias Library.Author
   alias Library.Repo
 
-  import Ecto.Query, only: [from: 2]
-
   def run do
     seed_authors()
   end
