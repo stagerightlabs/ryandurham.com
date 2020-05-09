@@ -1,4 +1,8 @@
 {
     "javascript.format.enable": false,
-    "standard.autoFixOnSave": true
+    "standard.autoFixOnSave": true,
+    "search.exclude": {
+        "**/*_build": true,
+        "**/*.elixir_ls": true
+    }
 }
