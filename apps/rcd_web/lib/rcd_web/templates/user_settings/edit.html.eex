@@ -1,4 +1,6 @@
-<h1 class="my-16">Settings</h1>
+<header>
+  <h1>Settings</h1>
+</header>
 
 <h3 class="my-4">Change e-mail</h3>
 
