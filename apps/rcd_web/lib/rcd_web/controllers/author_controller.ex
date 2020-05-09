@@ -5,15 +5,16 @@ defmodule RcdWeb.AuthorController do
   alias Library.Author
 
   def index(conn, _params) do
-    authors = Library.list_authors()
-    |>Enum.group_by(fn author -> String.first(author.sortable_name) end)
-    |>Enum.map(fn {letter, group} ->
-      %{
-        letter: String.upcase(letter),
-        group: group,
-        final: List.last(group)
-      }
-    end)
+    authors =
+      Library.list_authors()
+      |> Enum.group_by(fn author -> String.first(author.sortable_name) end)
+      |> Enum.map(fn {letter, group} ->
+        %{
+          letter: String.upcase(letter),
+          group: group,
+          final: List.last(group)
+        }
+      end)
 
     render(conn, "index.html", authors: authors)
   end

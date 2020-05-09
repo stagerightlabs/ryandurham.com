@@ -56,7 +56,7 @@ defmodule RcdWeb.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:tzdata, "~> 1.0.1"},
-      {:utilities, in_umbrella: true},
+      {:utilities, in_umbrella: true}
     ]
   end
 

@@ -16,6 +16,7 @@ defmodule RcdWeb.LayoutView do
       "px-3 py-2 rounded-md font-medium leading-5 text-owl-900 dark:text-owl-400 dark-hover:text-owl-200  hover:bg-owl-200 dark-hover:bg-owl-800 transition duration-150 ease-in-out " <>
         extra
     end
+
     #
   end
 

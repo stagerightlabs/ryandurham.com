@@ -37,7 +37,9 @@ defmodule Library.Author do
 
   defp maybe_add_sortable_name(changeset) do
     case name = get_change(changeset, :name) do
-      nil -> changeset
+      nil ->
+        changeset
+
       _ ->
         [first, last] =
           name
@@ -46,14 +48,16 @@ defmodule Library.Author do
           |> Tuple.to_list()
           |> Enum.map(fn str -> String.trim(str) end)
 
-          changeset
+        changeset
         |> put_change(:sortable_name, last <> ", " <> first)
     end
   end
 
   defp maybe_add_slug(changeset) do
     case name = get_change(changeset, :name) do
-      nil -> changeset
+      nil ->
+        changeset
+
       _ ->
         changeset
         |> put_change(:slug, string_to_slug(name))
@@ -62,9 +66,12 @@ defmodule Library.Author do
 
   defp maybe_add_suffix_to_slug(changeset) do
     case slug = get_change(changeset, :slug) do
-      nil -> changeset
+      nil ->
+        changeset
+
       _ ->
         count = Repo.one(from a in __MODULE__, where: a.slug == ^slug, select: count())
+
         if count > 0 do
           put_change(changeset, :slug, slug <> "-" <> to_string(count))
         else

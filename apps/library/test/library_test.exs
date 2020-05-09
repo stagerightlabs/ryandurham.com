@@ -6,8 +6,18 @@ defmodule Library.AuthorTest do
   describe "authors" do
     alias Library.Author
 
-    @valid_attrs %{name: "some name", url: "some url", sortable_name: "name, some", slug: "some-name"}
-    @update_attrs %{name: "some updated name", slug: "some updated slug", sortable_name: "some updated sortable_name", url: "some updated url"}
+    @valid_attrs %{
+      name: "some name",
+      url: "some url",
+      sortable_name: "name, some",
+      slug: "some-name"
+    }
+    @update_attrs %{
+      name: "some updated name",
+      slug: "some updated slug",
+      sortable_name: "some updated sortable_name",
+      url: "some updated url"
+    }
     @invalid_attrs %{name: nil, slug: nil, sortable_name: nil, url: nil}
 
     def author_fixture(attrs \\ %{}) do
@@ -35,7 +45,9 @@ defmodule Library.AuthorTest do
     end
 
     test "create_author/1 with valid data creates a author" do
-      assert {:ok, %Author{} = author} = Library.create_author(%{name: "Some Name", url: "some url"})
+      assert {:ok, %Author{} = author} =
+               Library.create_author(%{name: "Some Name", url: "some url"})
+
       assert author.name == "Some Name"
       assert author.slug == "some-name"
       assert author.sortable_name == "name, some"

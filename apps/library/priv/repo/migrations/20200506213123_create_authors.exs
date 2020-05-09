@@ -12,6 +12,5 @@ defmodule Admin.Repo.Migrations.CreateAuthors do
     end
 
     create unique_index(:authors, [:slug])
-
   end
 end
