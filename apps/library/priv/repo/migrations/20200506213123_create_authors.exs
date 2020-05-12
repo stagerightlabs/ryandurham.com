@@ -1,4 +1,4 @@
-defmodule Admin.Repo.Migrations.CreateAuthors do
+defmodule Library.Repo.Migrations.CreateAuthors do
   use Ecto.Migration
 
   def change do

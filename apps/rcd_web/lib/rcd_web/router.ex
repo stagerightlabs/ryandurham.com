@@ -67,6 +67,8 @@ defmodule RcdWeb.Router do
     patch "/authors/:slug", AuthorController, :update
     put "/authors/:slug", AuthorController, :update
     delete "/authors/:slug", AuthorController, :delete
+
+    resources "/books", BookController
   end
 
   scope "/" do

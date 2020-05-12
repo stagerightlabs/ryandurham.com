@@ -1,0 +1,42 @@
+<h1>Listing Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sortable title</th>
+      <th>Slug</th>
+      <th>Year</th>
+      <th>Isbn13</th>
+      <th>Purchase link</th>
+      <th>Rating</th>
+      <th>Thoughts</th>
+      <th>Category</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for book <- @books do %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.sortable_title %></td>
+      <td><%= book.slug %></td>
+      <td><%= book.year %></td>
+      <td><%= book.isbn13 %></td>
+      <td><%= book.purchase_link %></td>
+      <td><%= book.rating %></td>
+      <td><%= book.thoughts %></td>
+      <td><%= book.category %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.book_path(@conn, :show, book) %></span>
+        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book) %></span>
+        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>
