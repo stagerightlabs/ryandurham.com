@@ -3,8 +3,8 @@ defmodule RcdWeb.BookControllerTest do
 
   alias Library
 
-  @create_attrs %{category: "some category", isbn13: "some isbn13", purchase_link: "some purchase_link", rating: 42, slug: "some slug", sortable_title: "some sortable_title", thoughts: "some thoughts", title: "some title", year: 42}
-  @update_attrs %{category: "some updated category", isbn13: "some updated isbn13", purchase_link: "some updated purchase_link", rating: 43, slug: "some updated slug", sortable_title: "some updated sortable_title", thoughts: "some updated thoughts", title: "some updated title", year: 43}
+  @create_attrs %{title: "Some Title"}
+  @update_attrs %{category: "some updated category", isbn13: "some updated isbn13", purchase_link: "some updated purchase_link", rating: 43, slug: "some-updated-slug", sortable_title: "some updated sortable_title", thoughts: "some updated thoughts", title: "some updated title", year: 43}
   @invalid_attrs %{category: nil, isbn13: nil, purchase_link: nil, rating: nil, slug: nil, sortable_title: nil, thoughts: nil, title: nil, year: nil}
 
   def fixture(:book) do
@@ -25,7 +25,7 @@ defmodule RcdWeb.BookControllerTest do
   describe "index" do
     test "lists all books", %{conn: conn} do
       conn = get(conn, Routes.book_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Books"
+      assert html_response(conn, 200) =~ "Books"
     end
   end
 
@@ -40,11 +40,11 @@ defmodule RcdWeb.BookControllerTest do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.book_path(conn, :create), book: @create_attrs)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.book_path(conn, :show, id)
+      assert %{slug: slug} = redirected_params(conn)
+      assert redirected_to(conn) == Routes.book_path(conn, :show, slug)
 
-      conn = get(conn, Routes.book_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Book"
+      conn = get(conn, Routes.book_path(conn, :show, slug))
+      assert html_response(conn, 200) =~ @create_attrs.title
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -57,7 +57,7 @@ defmodule RcdWeb.BookControllerTest do
     setup [:create_book]
 
     test "renders form for editing chosen book", %{conn: conn, book: book} do
-      conn = get(conn, Routes.book_path(conn, :edit, book))
+      conn = get(conn, Routes.book_path(conn, :edit, book.slug))
       assert html_response(conn, 200) =~ "Edit Book"
     end
   end
@@ -66,15 +66,15 @@ defmodule RcdWeb.BookControllerTest do
     setup [:create_book]
 
     test "redirects when data is valid", %{conn: conn, book: book} do
-      conn = put(conn, Routes.book_path(conn, :update, book), book: @update_attrs)
-      assert redirected_to(conn) == Routes.book_path(conn, :show, book)
+      conn = put(conn, Routes.book_path(conn, :update, book.slug), book: @update_attrs)
+      assert redirected_to(conn) == Routes.book_path(conn, :show, @update_attrs.slug)
 
-      conn = get(conn, Routes.book_path(conn, :show, book))
+      conn = get(conn, Routes.book_path(conn, :show, @update_attrs.slug))
       assert html_response(conn, 200) =~ "some updated category"
     end
 
     test "renders errors when data is invalid", %{conn: conn, book: book} do
-      conn = put(conn, Routes.book_path(conn, :update, book), book: @invalid_attrs)
+      conn = put(conn, Routes.book_path(conn, :update, book.slug), book: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Book"
     end
   end
@@ -83,7 +83,7 @@ defmodule RcdWeb.BookControllerTest do
     setup [:create_book]
 
     test "deletes chosen book", %{conn: conn, book: book} do
-      conn = delete(conn, Routes.book_path(conn, :delete, book))
+      conn = delete(conn, Routes.book_path(conn, :delete, book.slug))
       assert redirected_to(conn) == Routes.book_path(conn, :index)
       assert_error_sent 404, fn ->
         get(conn, Routes.book_path(conn, :show, book))

@@ -161,6 +161,23 @@ defmodule Library do
   """
   def get_book!(id), do: Repo.get!(Book, id)
 
+
+  @doc """
+  Gets a single book by slug.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_book!(123)
+      %Book{}
+
+      iex> get_book!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book_by_slug!(slug), do: Repo.get_by!(Book, slug: slug)
+
   @doc """
   Creates a book.
 
@@ -175,7 +192,16 @@ defmodule Library do
   """
   def create_book(attrs \\ %{}) do
     %Book{}
-    |> Book.changeset(attrs)
+    |> Book.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Create a book, bypassing the creation validation rules.
+  """
+  def force_create_book(attrs \\ %{}) do
+    %Book{}
+    |> Book.update_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -193,7 +219,7 @@ defmodule Library do
   """
   def update_book(%Book{} = book, attrs) do
     book
-    |> Book.changeset(attrs)
+    |> Book.update_changeset(attrs)
     |> Repo.update()
   end
 
@@ -223,6 +249,6 @@ defmodule Library do
 
   """
   def change_book(%Book{} = book, attrs \\ %{}) do
-    Book.changeset(book, attrs)
+    Book.update_changeset(book, attrs)
   end
 end

@@ -1,29 +1,19 @@
-<h1>Show Book</h1>
+<header>
+  <h1><%= @book.title %></h1>
+  <aside>
+    <%= link "Edit", to: Routes.book_path(@conn, :edit, @book.slug), class: "btn btn-primary" %>
+    <%= link "Back", to: Routes.book_path(@conn, :index), class: "btn btn-secondary ml-2" %>
+  </aside>
+</header>
 
 <ul>
-
   <li>
-    <strong>Title:</strong>
-    <%= @book.title %>
-  </li>
-
-  <li>
-    <strong>Sortable title:</strong>
-    <%= @book.sortable_title %>
-  </li>
-
-  <li>
-    <strong>Slug:</strong>
-    <%= @book.slug %>
-  </li>
-
-  <li>
-    <strong>Year:</strong>
+    <strong>Publication Year:</strong>
     <%= @book.year %>
   </li>
 
   <li>
-    <strong>Isbn13:</strong>
+    <strong>ISBN-13:</strong>
     <%= @book.isbn13 %>
   </li>
 
@@ -33,8 +23,8 @@
   </li>
 
   <li>
-    <strong>Rating:</strong>
-    <%= @book.rating %>
+    <strong>Category:</strong>
+    <%= @book.category %>
   </li>
 
   <li>
@@ -42,12 +32,7 @@
     <%= @book.thoughts %>
   </li>
 
-  <li>
-    <strong>Category:</strong>
-    <%= @book.category %>
-  </li>
-
 </ul>
 
-<span><%= link "Edit", to: Routes.book_path(@conn, :edit, @book) %></span>
-<span><%= link "Back", to: Routes.book_path(@conn, :index) %></span>
+<span></span>
+<span></span>
