@@ -4,6 +4,8 @@ defmodule RcdWeb.AuthorController do
   alias Library
   alias Library.Author
 
+  plug :put_layout, {RcdWeb.LayoutView, "library.html"}
+
   def index(conn, _params) do
     authors =
       Library.list_authors()

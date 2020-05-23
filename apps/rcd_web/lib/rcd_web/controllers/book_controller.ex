@@ -4,6 +4,8 @@ defmodule RcdWeb.BookController do
   alias Library
   alias Library.Book
 
+  plug :put_layout, {RcdWeb.LayoutView, "library.html"}
+
   def index(conn, _params) do
     books = Library.list_books()
       |> Enum.group_by(fn book -> String.first(book.sortable_title) end)

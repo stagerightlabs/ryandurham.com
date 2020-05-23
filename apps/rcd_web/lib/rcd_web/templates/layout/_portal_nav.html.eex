@@ -26,9 +26,9 @@
         <%# Desktop Nav Links %>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex">
-            <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :dashboard)  %>
-            <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :todo, "ml-2") %>
-            <%= link "Authors", to: Routes.author_path(@conn, :index), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, :index, "ml-2") %>
+            <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, "dashboard")  %>
+            <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, "todo", "ml-2") %>
+            <%= link "Library", to: Routes.book_path(@conn, :index), class: RcdWeb.LayoutView.desktop_nav_button_classes(@conn, "library", "ml-2") %>
           </div>
         </div>
       </div>
@@ -84,8 +84,9 @@
   -->
   <div class="sm:hidden" :class="{ 'block': mobileMenuVisible, 'hidden': !mobileMenuVisible }">
     <div class="px-2 pt-2 pb-3">
-      <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, :dashboard)  %>
-      <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, :todo, "mt-1") %>
+      <%= link "Dashboard", to: Routes.page_path(@conn, :dashboard), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, "dashboard")  %>
+      <%= link "To Do", to: Routes.page_path(@conn, :todo), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, "todo", "mt-1") %>
+      <%= link "Library", to: Routes.book_path(@conn, :index), class: RcdWeb.LayoutView.mobile_nav_button_classes(@conn, "library", "mt-1") %>
     </div>
   </div>
 </nav>
