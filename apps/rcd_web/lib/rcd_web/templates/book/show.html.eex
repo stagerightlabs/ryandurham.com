@@ -1,17 +1,9 @@
 <header>
-  <h1><%= @book.title %></h1>
-  <aside>
-    <%= link "Edit", to: Routes.book_path(@conn, :edit, @book.slug), class: "btn btn-primary" %>
-    <%= link "Back", to: Routes.book_path(@conn, :index), class: "btn btn-secondary ml-2" %>
-  </aside>
+  <h1 class="w-full"><%= @book.title %></h1>
 </header>
 
-<div class="grid grid-cols-3 gap-4">
-  <div class="grid grid-cols-1 gap-4 col-span-2">
-    <div>
-      <p><strong>Category:</strong></p>
-      <p><%= @book.category %></p>
-    </div>
+<div class="grid grid-cols-3 gap-4 mb-4">
+  <div class="grid grid-cols-1 gap-4">
     <div>
       <p><strong>Publication Year</strong></p>
       <p><%= @book.year %></p>
@@ -20,18 +12,33 @@
       <p><strong>ISBN-13:</strong></p>
       <p><%= @book.isbn13 %></p>
     </div>
-    <div>
-      <p><strong>Purchase link:</strong></p>
-      <p><%= @book.purchase_link %></p>
+  </div>
+  <div class="flex flex-col">
+    <div class="mb-4">
+      <p><strong>Authors</strong></p>
     </div>
-
     <div>
-      <p><strong>Thoughts:</strong></p>
-      <p><%= @book.thoughts %></p>
+      <p><strong>Category:</strong></p>
+      <p><%= @book.category %></p>
     </div>
   </div>
   <div>
-    <p><strong>Author</strong></p>
-
+    <%= link "Edit this Book", to: Routes.book_path(@conn, :edit, @book.slug), class: "btn btn-primary mb-2" %>
+    <%= if @book.purchase_link do %>
+    <a
+      href="<%= @book.purchase_link %>"
+      target="_blank"
+      class="btn btn-secondary mb-2"
+    >
+      <strong>Purchase link</strong>
+      <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 ml-1" %>
+    </a>
+    <% end %>
+    <%= link "Back to Books", to: Routes.book_path(@conn, :index), class: "btn btn-secondary" %>
   </div>
+</div>
+
+<div>
+  <p><strong>Thoughts:</strong></p>
+  <p><%= @book.thoughts %></p>
 </div>
