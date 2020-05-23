@@ -1,8 +1,6 @@
 <svg
   fill="currentColor"
   viewBox="0 0 20 20"
-  style="--darkreader-inline-fill:currentColor;"
-  data-darkreader-inline-fill=""
   class="<%= if assigns[:class], do: @class %>"
 >
   <path
