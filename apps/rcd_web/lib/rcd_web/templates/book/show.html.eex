@@ -6,33 +6,32 @@
   </aside>
 </header>
 
-<ul>
-  <li>
-    <strong>Publication Year:</strong>
-    <%= @book.year %>
-  </li>
+<div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 gap-4 col-span-2">
+    <div>
+      <p><strong>Category:</strong></p>
+      <p><%= @book.category %></p>
+    </div>
+    <div>
+      <p><strong>Publication Year</strong></p>
+      <p><%= @book.year %></p>
+    </div>
+    <div>
+      <p><strong>ISBN-13:</strong></p>
+      <p><%= @book.isbn13 %></p>
+    </div>
+    <div>
+      <p><strong>Purchase link:</strong></p>
+      <p><%= @book.purchase_link %></p>
+    </div>
 
-  <li>
-    <strong>ISBN-13:</strong>
-    <%= @book.isbn13 %>
-  </li>
+    <div>
+      <p><strong>Thoughts:</strong></p>
+      <p><%= @book.thoughts %></p>
+    </div>
+  </div>
+  <div>
+    <p><strong>Author</strong></p>
 
-  <li>
-    <strong>Purchase link:</strong>
-    <%= @book.purchase_link %>
-  </li>
-
-  <li>
-    <strong>Category:</strong>
-    <%= @book.category %>
-  </li>
-
-  <li>
-    <strong>Thoughts:</strong>
-    <%= @book.thoughts %>
-  </li>
-
-</ul>
-
-<span></span>
-<span></span>
+  </div>
+</div>

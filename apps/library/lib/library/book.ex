@@ -17,6 +17,7 @@ defmodule Library.Book do
     field :thoughts, :string
     field :title, :string
     field :year, :integer
+    many_to_many :authors, Library.Author, join_through: "authors_books", on_replace: :delete
 
     timestamps()
   end
@@ -39,7 +40,12 @@ defmodule Library.Book do
     |> validate_required([:title, :sortable_title, :slug, :category])
   end
 
+  def changeset_authors(book, author_list) do
+    change(book)
+    |>put_assoc(:authors, author_list)
+  end
 
+  # Add a sortable title to the change set if it is needed.
   defp maybe_add_sortable_title(changeset) do
     case get_change(changeset, :title) do
       "A " <> title -> put_change(changeset, :sortable_title, title)
@@ -50,6 +56,7 @@ defmodule Library.Book do
     end
   end
 
+  # Add a slug to the changeset if it is needed.
   defp maybe_add_slug(changeset) do
     case title = get_change(changeset, :title) do
       nil ->
@@ -61,6 +68,7 @@ defmodule Library.Book do
     end
   end
 
+  # Add a unique index to the end of a slug if it is a duplicate.
   defp maybe_add_suffix_to_slug(changeset) do
     case slug = get_change(changeset, :slug) do
       nil ->

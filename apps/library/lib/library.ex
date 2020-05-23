@@ -251,4 +251,46 @@ defmodule Library do
   def change_book(%Book{} = book, attrs \\ %{}) do
     Book.update_changeset(book, attrs)
   end
+
+  @doc """
+  Add an author to a book.
+  """
+  def add_author_to_book(book, author) do
+    book = Repo.preload(book, :authors)
+
+    book
+    |>Book.changeset_authors([author | book.authors])
+    |>Repo.update()
+  end
+
+  @doc """
+  Remove an author from a book
+  """
+  def remove_author_from_book(book, author) do
+    book = Repo.preload(book, :authors)
+
+    index =
+      Enum.find_index(book.authors, fn a ->
+        author.slug == a.slug
+      end)
+
+    book
+    |>Book.changeset_authors(Enum.slice(book.authors, index, 1))
+    |>Repo.update()
+  end
+
+  @doc """
+  Replace the list of authors associated with a book.
+  """
+  def replace_book_authors(book, authors) when is_list(authors) do
+    book = Repo.preload(book, :authors)
+
+    book
+    |>Book.changeset_authors(authors)
+    |>Repo.update()
+  end
+
+  def replace_book_authors(book, author) do
+    replace_book_authors(book, [author])
+  end
 end
