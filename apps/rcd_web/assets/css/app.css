@@ -90,7 +90,7 @@ textarea {
 
 /* basic button */
 .btn {
-  @apply flex h-10 py-2 px-4 border border-transparent text-sm content-center items-center font-medium rounded-md transition duration-150 ease-in-out;
+  @apply flex h-10 py-2 px-4 border border-transparent text-sm content-center justify-center font-medium rounded-md transition duration-150 ease-in-out;
 }
 
 /* basic button :hover light mode*/
