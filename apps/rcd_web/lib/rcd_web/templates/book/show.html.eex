@@ -15,7 +15,14 @@
   </div>
   <div class="flex flex-col">
     <div class="mb-4">
-      <p><strong>Authors</strong></p>
+      <%= if ! @book.authors do %>
+      <p><strong>No Author on Record</strong></p>
+      <% else %>
+        <p><strong><%= if length(@book.authors) == 1, do: "Author", else: "Authors" %></strong></p>
+        <%= for author <- @book.authors do %>
+          <p><a href="<%= Routes.author_path(@conn, :show, author.slug) %>"><%= author.name %></a></p>
+        <% end %>
+      <% end %>
     </div>
     <div>
       <p><strong>Category:</strong></p>

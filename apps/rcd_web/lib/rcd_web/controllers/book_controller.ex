@@ -3,6 +3,7 @@ defmodule RcdWeb.BookController do
 
   alias Library
   alias Library.Book
+  alias Library.Repo
 
   plug :put_layout, {RcdWeb.LayoutView, "library.html"}
 
@@ -39,6 +40,8 @@ defmodule RcdWeb.BookController do
 
   def show(conn, %{"slug" => slug}) do
     book = Library.get_book_by_slug!(slug)
+      |>Repo.preload(:authors)
+
     render(conn, "show.html", book: book)
   end
 
