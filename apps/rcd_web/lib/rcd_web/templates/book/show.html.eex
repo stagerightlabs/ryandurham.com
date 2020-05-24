@@ -2,8 +2,8 @@
   <h1 class="w-full"><%= @book.title %></h1>
 </header>
 
-<div class="grid grid-cols-3 gap-4 mb-4">
-  <div class="grid grid-cols-1 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+  <div class="grid grid-cols-1 gap-4 order-last sm:order-first">
     <div>
       <p><strong>Publication Year</strong></p>
       <p><%= @book.year %></p>
@@ -22,7 +22,7 @@
       <p><%= @book.category %></p>
     </div>
   </div>
-  <div>
+  <div class="order-first sm:order-last">
     <%= link "Edit this Book", to: Routes.book_path(@conn, :edit, @book.slug), class: "btn btn-primary mb-2" %>
     <%= if @book.purchase_link do %>
     <a
