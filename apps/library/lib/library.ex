@@ -59,6 +59,21 @@ defmodule Library do
   def get_author_by_slug!(slug), do: Repo.get_by!(Author, slug: slug)
 
   @doc """
+  Search for authors with a query string
+  """
+  def query_authors(term) do
+    term = "%#{term}%"
+
+    Repo.all(from(
+        a in Author,
+        where: ilike(a.name, ^term),
+        order_by: a.sortable_name,
+        limit: 20
+      )
+    )
+  end
+
+  @doc """
   Creates a author.
 
   ## Examples

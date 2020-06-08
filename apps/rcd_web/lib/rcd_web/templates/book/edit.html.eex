@@ -40,6 +40,10 @@
   </div>
 
   <div class="mt-4">
+    <%= live_render(@conn, RcdWeb.AuthorsMultiSelectLive) %>
+  </div>
+
+  <div class="mt-4">
     <%= label f, :category %>
     <%= select f, :category, ["Non-Fiction", "Fiction", "Technical"] %>
     <%= error_tag f, :category %>
