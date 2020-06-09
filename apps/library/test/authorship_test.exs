@@ -9,8 +9,8 @@ defmodule Library.AuthorShipTest do
       {:ok, author} =
         attrs
         |> Enum.into(%{
-            name: "some name",
-          })
+          name: "some name"
+        })
         |> Library.create_author()
 
       author
@@ -20,8 +20,8 @@ defmodule Library.AuthorShipTest do
       {:ok, book} =
         attrs
         |> Enum.into(%{
-            title: "some title"
-          })
+          title: "some title"
+        })
         |> Library.create_book()
 
       book
@@ -70,8 +70,7 @@ defmodule Library.AuthorShipTest do
       Library.replace_book_authors(book, second_author)
 
       book = Repo.preload(book, :authors)
-      assert book.authors|>List.first() == second_author
+      assert book.authors |> List.first() == second_author
     end
-
   end
 end

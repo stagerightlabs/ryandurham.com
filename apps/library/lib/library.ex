@@ -78,7 +78,8 @@ defmodule Library do
   def query_authors(term) do
     term = "%#{term}%"
 
-    Repo.all(from(
+    Repo.all(
+      from(
         a in Author,
         where: ilike(a.name, ^term),
         order_by: a.sortable_name,
@@ -190,7 +191,6 @@ defmodule Library do
   """
   def get_book!(id), do: Repo.get!(Book, id)
 
-
   @doc """
   Gets a single book by slug.
 
@@ -288,8 +288,8 @@ defmodule Library do
     book = Repo.preload(book, :authors)
 
     book
-    |>Book.changeset_authors([author | book.authors])
-    |>Repo.update()
+    |> Book.changeset_authors([author | book.authors])
+    |> Repo.update()
   end
 
   @doc """
@@ -304,8 +304,8 @@ defmodule Library do
       end)
 
     book
-    |>Book.changeset_authors(Enum.slice(book.authors, index, 1))
-    |>Repo.update()
+    |> Book.changeset_authors(Enum.slice(book.authors, index, 1))
+    |> Repo.update()
   end
 
   @doc """
@@ -315,8 +315,8 @@ defmodule Library do
     book = Repo.preload(book, :authors)
 
     book
-    |>Book.changeset_authors(authors)
-    |>Repo.update()
+    |> Book.changeset_authors(authors)
+    |> Repo.update()
   end
 
   def replace_book_authors(book, author) do

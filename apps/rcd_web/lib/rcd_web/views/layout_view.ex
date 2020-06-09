@@ -37,6 +37,7 @@ defmodule RcdWeb.LayoutView do
       true ->
         "py-4 px-1 text-center border-b-2 border-owl-400 font-medium text-sm leading-5 text-owl-400 hover:text-owl-400 focus:outline-none focus:text-owl-400 focus:owl-400 " <>
           extra
+
       false ->
         "py-4 px-1 text-center border-b-2 border-transparent font-medium text-sm leading-5 text-owl-500 hover:text-owl-400 hover:border-owl-400 focus:outline-none focus:text-gray-700 focus:border-gray-300 " <>
           extra

@@ -8,7 +8,8 @@ defmodule RcdWeb.BookController do
   plug :put_layout, {RcdWeb.LayoutView, "library.html"}
 
   def index(conn, _params) do
-    books = Library.list_books()
+    books =
+      Library.list_books()
       |> Enum.group_by(fn book -> String.first(book.sortable_title) end)
       |> Enum.map(fn {letter, group} ->
         %{
@@ -39,26 +40,31 @@ defmodule RcdWeb.BookController do
   end
 
   def show(conn, %{"slug" => slug}) do
-    book = Library.get_book_by_slug!(slug)
-      |>Repo.preload(:authors)
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
 
     render(conn, "show.html", book: book)
   end
 
   def edit(conn, %{"slug" => slug}) do
-    book = Library.get_book_by_slug!(slug)
-      |>Repo.preload(:authors)
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
+
     changeset = Library.change_book(book)
     render(conn, "edit.html", book: book, changeset: changeset, authors: book.authors)
   end
 
   def update(conn, %{"slug" => slug, "book" => book_params, "authors" => authors}) do
-    book = Library.get_book_by_slug!(slug)
-      |>Repo.preload(:authors)
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
 
-    authors = Enum.map(authors, fn slug ->
-      Library.get_author_by_slug(slug)
-    end)
+    authors =
+      Enum.map(authors, fn slug ->
+        Library.get_author_by_slug(slug)
+      end)
 
     Library.replace_book_authors(book, authors)
 

@@ -109,9 +109,16 @@ defmodule RcdWeb.BookControllerTest do
     test "assigns an author to a book", %{conn: conn, book: book, author: author} do
       book = Repo.preload(book, :authors)
       assert length(book.authors) == 0
-      put(conn, Routes.book_path(conn, :update, book.slug), book: Map.from_struct(book), authors: [author.slug])
-      book = Library.get_book_by_slug!(book.slug)
-      |>Repo.preload(:authors)
+
+      put(conn, Routes.book_path(conn, :update, book.slug),
+        book: Map.from_struct(book),
+        authors: [author.slug]
+      )
+
+      book =
+        Library.get_book_by_slug!(book.slug)
+        |> Repo.preload(:authors)
+
       assert book.authors == [author]
     end
 
@@ -119,9 +126,16 @@ defmodule RcdWeb.BookControllerTest do
       Library.add_author_to_book(book, author)
       book = Repo.preload(book, :authors)
       assert length(book.authors) == 1
-      put(conn, Routes.book_path(conn, :update, book.slug), book: Map.from_struct(book), authors: [""])
-      book = Library.get_book_by_slug!(book.slug)
-      |>Repo.preload(:authors)
+
+      put(conn, Routes.book_path(conn, :update, book.slug),
+        book: Map.from_struct(book),
+        authors: [""]
+      )
+
+      book =
+        Library.get_book_by_slug!(book.slug)
+        |> Repo.preload(:authors)
+
       assert book.authors == []
     end
 

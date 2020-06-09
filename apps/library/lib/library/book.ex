@@ -36,7 +36,17 @@ defmodule Library.Book do
   @doc false
   def update_changeset(book, attrs) do
     book
-    |> cast(attrs, [:title, :sortable_title, :slug, :year, :isbn13, :purchase_link, :rating, :thoughts, :category])
+    |> cast(attrs, [
+      :title,
+      :sortable_title,
+      :slug,
+      :year,
+      :isbn13,
+      :purchase_link,
+      :rating,
+      :thoughts,
+      :category
+    ])
     |> validate_required([:title, :sortable_title, :slug, :category])
   end
 
@@ -48,7 +58,7 @@ defmodule Library.Book do
       end
 
     change(book)
-      |>put_assoc(:authors, author_list)
+    |> put_assoc(:authors, author_list)
   end
 
   # Add a sortable title to the change set if it is needed.
