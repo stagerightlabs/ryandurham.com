@@ -1,7 +1,6 @@
 const hooks = {
   AuthorMultiSelect: {
     mounted () {
-      console.log('mounted')
       this.el.addEventListener('keydown', e => {
         // Listen for blur events and alert the live view component.
         // There is probably a better way to do this.

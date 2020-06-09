@@ -3,13 +3,14 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
 
   alias Library
 
-  def mount(_params, %{"user_token" => token, "authors" => authors }, socket) do
+  def mount(_params, %{"user_token" => token, "authors" => authors}, socket) do
     socket =
       assign(socket,
         label: "Authors",
         authors: authors,
         query: "",
         results: [],
+        result_length: 0,
         highlighted: 0,
         back_channel: "js:" <> Base.encode64(token)
       )
@@ -87,12 +88,6 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     {:noreply, reset(socket)}
   end
 
-  # def handle_event("query_authors", %{"code" => code}, socket) do
-  #   # socket = assign(socket, key: value)
-  #   IO.inspect(code)
-  #   {:noreply, socket}
-  # end
-
   def handle_event("query_authors", %{"code" => "Enter"}, socket) do
     selection =
       case Enum.at(socket.assigns.results, socket.assigns.highlighted, nil) do
@@ -115,7 +110,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
 
   def handle_event("query_authors", %{"code" => "ArrowDown"}, socket) do
     highlighted = socket.assigns.highlighted
-    max_length = length(socket.assigns.results) - 1
+    max_length = socket.assigns.result_length
 
     socket = assign(socket, highlighted: min(highlighted + 1, max_length))
 
@@ -134,7 +129,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     socket =
       case String.length(query) do
         0 ->
-          assign(socket, results: [])
+          assign(socket, results: [], result_length: 0)
 
         _length ->
           send(self(), {:search_authors, query})
@@ -156,6 +151,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     socket =
       assign(socket,
         results: [],
+        result_length: 0,
         query: ""
       )
 
@@ -181,6 +177,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     socket =
       assign(socket,
         results: results,
+        result_length: length(results),
         highlighted: 0
       )
 
