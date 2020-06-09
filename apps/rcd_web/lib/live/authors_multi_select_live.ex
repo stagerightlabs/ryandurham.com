@@ -3,11 +3,11 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
 
   alias Library
 
-  def mount(_params, %{"user_token" => token}, socket) do
+  def mount(_params, %{"user_token" => token, "authors" => authors }, socket) do
     socket =
       assign(socket,
         label: "Authors",
-        authors: [],
+        authors: authors,
         query: "",
         results: [],
         highlighted: 0,
@@ -26,10 +26,12 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
           <%= for author <- @authors do %>
             <li>
               <%= author.name %>
+              <input type="hidden" name="authors[]" value="<%= author.slug %>" />
               <button
                 type="button"
                 phx-click="remove_author"
                 phx-value-slug="<%= author.slug %>"
+                title="Remove <%= author.name %>"
               >
                 <%= Phoenix.View.render RcdWeb.IconsView, "_trashcan.html", class: "w-4 inline mb-1 dark:text-owl-400 text-owl-900" %>
               </button>
@@ -38,11 +40,11 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
         </ul>
       <% else %>
         <p class="p-2"><em>No author selected</em></p>
+        <input type="hidden" name="authors[]" value="" />
       <% end %>
       <input
         id="author-multi-select-input"
         type="text"
-        name="query"
         value="<%= @query %>"
         autocomplete="off"
         placeholder="Select author..."

@@ -41,8 +41,14 @@ defmodule Library.Book do
   end
 
   def changeset_authors(book, author_list) do
+    author_list =
+      case author_list do
+        [nil] -> []
+        author_list -> author_list
+      end
+
     change(book)
-    |>put_assoc(:authors, author_list)
+      |>put_assoc(:authors, author_list)
   end
 
   # Add a sortable title to the change set if it is needed.

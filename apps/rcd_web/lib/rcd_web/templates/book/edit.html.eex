@@ -40,7 +40,7 @@
   </div>
 
   <div class="mt-4">
-    <%= live_render(@conn, RcdWeb.AuthorsMultiSelectLive) %>
+    <%= live_render(@conn, RcdWeb.AuthorsMultiSelectLive, session: %{"authors" => @book.authors}) %>
   </div>
 
   <div class="mt-4">

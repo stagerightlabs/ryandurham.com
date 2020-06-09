@@ -59,6 +59,20 @@ defmodule Library do
   def get_author_by_slug!(slug), do: Repo.get_by!(Author, slug: slug)
 
   @doc """
+  Gets a single author, queried by slug.
+
+  ## Examples
+
+      iex> get_author("slug")
+      %Author{}
+
+      iex> get_author!("invalid")
+      nil
+
+  """
+  def get_author_by_slug(slug), do: Repo.get_by(Author, slug: slug)
+
+  @doc """
   Search for authors with a query string
   """
   def query_authors(term) do
