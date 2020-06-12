@@ -61,9 +61,36 @@ input[type=checkbox]:focus {
   @apply outline-none border-blue shadow-none;
 }
 
+/* select - light mode */
+select{
+  @apply appearance-none block w-full bg-transparent text-owl-900 px-3 py-2 border border-owl-600 rounded-md transition duration-150 ease-in-out;
+
+  /* Borrowed from the Tailwind Form Plugin */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234C5862'%3e%3cpath d='M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
+}
+
+/* select - dark mode */
+.mode-dark select {
+  @apply text-owl-400;
+}
+
+/* text area - light mode */
+textarea {
+  @apply appearance-none block w-full bg-transparent text-owl-900 px-3 py-2 border border-owl-600 rounded-md transition duration-150 ease-in-out;
+}
+
+/* text area - dark mode */
+.mode-dark textarea {
+  @apply text-owl-400;
+}
+
+
 /* basic button */
 .btn {
-  @apply flex h-10 py-2 px-4 border border-transparent text-sm content-center items-center font-medium rounded-md transition duration-150 ease-in-out;
+  @apply flex h-10 py-2 px-4 border border-transparent text-sm content-center justify-center font-medium rounded-md transition duration-150 ease-in-out;
 }
 
 /* basic button :hover light mode*/
@@ -166,7 +193,7 @@ main {
 
 /* page headings */
 main header {
-  @apply my-12;
+  @apply my-6;
 }
 
 /* page heading title */
@@ -211,7 +238,7 @@ main header aside {
 
   /* page headings */
   main header {
-    @apply flex justify-between;
+    @apply flex justify-between my-12;
   }
 
   /* page heading title */

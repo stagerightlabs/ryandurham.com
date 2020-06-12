@@ -59,16 +59,23 @@ defmodule RcdWeb.Router do
     get "/dashboard", PageController, :dashboard
     get "/todo", PageController, :todo
 
-    get "/authors", AuthorController, :index
-    get "/authors/new", AuthorController, :new
-    post "/authors", AuthorController, :create
-    get "/authors/:slug", AuthorController, :show
-    get "/authors/:slug/edit", AuthorController, :edit
-    patch "/authors/:slug", AuthorController, :update
-    put "/authors/:slug", AuthorController, :update
-    delete "/authors/:slug", AuthorController, :delete
+    get "/library/authors", AuthorController, :index
+    get "/library/authors/new", AuthorController, :new
+    post "/library/authors", AuthorController, :create
+    get "/library/authors/:slug", AuthorController, :show
+    get "/library/authors/:slug/edit", AuthorController, :edit
+    patch "/library/authors/:slug", AuthorController, :update
+    put "/library/authors/:slug", AuthorController, :update
+    delete "/library/authors/:slug", AuthorController, :delete
 
-    resources "/books", BookController
+    get "/library/books", BookController, :index
+    get "/library/books/new", BookController, :new
+    post "/library/books", BookController, :create
+    get "/library/books/:slug", BookController, :show
+    get "/library/books/:slug/edit", BookController, :edit
+    patch "/library/books/:slug", BookController, :update
+    put "/library/books/:slug", BookController, :update
+    delete "/library/books/:slug", BookController, :delete
   end
 
   scope "/" do

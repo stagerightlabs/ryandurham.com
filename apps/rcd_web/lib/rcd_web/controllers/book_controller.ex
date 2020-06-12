@@ -3,9 +3,22 @@ defmodule RcdWeb.BookController do
 
   alias Library
   alias Library.Book
+  alias Library.Repo
+
+  plug :put_layout, {RcdWeb.LayoutView, "library.html"}
 
   def index(conn, _params) do
-    books = Library.list_books()
+    books =
+      Library.list_books()
+      |> Enum.group_by(fn book -> String.first(book.sortable_title) end)
+      |> Enum.map(fn {letter, group} ->
+        %{
+          letter: String.upcase(letter),
+          group: group,
+          final: List.last(group)
+        }
+      end)
+
     render(conn, "index.html", books: books)
   end
 
@@ -19,40 +32,59 @@ defmodule RcdWeb.BookController do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book created successfully.")
-        |> redirect(to: Routes.book_path(conn, :show, book))
+        |> redirect(to: Routes.book_path(conn, :show, book.slug))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    book = Library.get_book!(id)
+  def show(conn, %{"slug" => slug}) do
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
+
     render(conn, "show.html", book: book)
   end
 
-  def edit(conn, %{"id" => id}) do
-    book = Library.get_book!(id)
+  def edit(conn, %{"slug" => slug}) do
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
+
     changeset = Library.change_book(book)
-    render(conn, "edit.html", book: book, changeset: changeset)
+    render(conn, "edit.html", book: book, changeset: changeset, authors: book.authors)
   end
 
-  def update(conn, %{"id" => id, "book" => book_params}) do
-    book = Library.get_book!(id)
+  def update(conn, %{"slug" => slug, "book" => book_params, "authors" => authors}) do
+    book =
+      Library.get_book_by_slug!(slug)
+      |> Repo.preload(:authors)
+
+    authors =
+      Enum.map(authors, fn slug ->
+        Library.get_author_by_slug(slug)
+      end)
+
+    Library.replace_book_authors(book, authors)
 
     case Library.update_book(book, book_params) do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book updated successfully.")
-        |> redirect(to: Routes.book_path(conn, :show, book))
+        |> redirect(to: Routes.book_path(conn, :show, book.slug))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", book: book, changeset: changeset)
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    book = Library.get_book!(id)
+  def update(conn, %{"slug" => slug, "book" => book_params}) do
+    update(conn, %{"slug" => slug, "book" => book_params, "authors" => []})
+  end
+
+  def delete(conn, %{"slug" => slug}) do
+    book = Library.get_book_by_slug!(slug)
     {:ok, _book} = Library.delete_book(book)
 
     conn

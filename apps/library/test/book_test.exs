@@ -6,15 +6,45 @@ defmodule Library.BookTest do
   describe "books" do
     alias Library.Book
 
-    @valid_attrs %{category: "some category", isbn13: "some isbn13", purchase_link: "some purchase_link", rating: 42, slug: "some slug", sortable_title: "some sortable_title", thoughts: "some thoughts", title: "some title", year: 42}
-    @update_attrs %{category: "some updated category", isbn13: "some updated isbn13", purchase_link: "some updated purchase_link", rating: 43, slug: "some updated slug", sortable_title: "some updated sortable_title", thoughts: "some updated thoughts", title: "some updated title", year: 43}
-    @invalid_attrs %{category: nil, isbn13: nil, purchase_link: nil, rating: nil, slug: nil, sortable_title: nil, thoughts: nil, title: nil, year: nil}
+    @valid_attrs %{
+      category: "some category",
+      isbn13: "some isbn13",
+      purchase_link: "some purchase_link",
+      rating: 42,
+      slug: "some-slug",
+      sortable_title: "some sortable_title",
+      thoughts: "some thoughts",
+      title: "some title",
+      year: 42
+    }
+    @update_attrs %{
+      category: "some updated category",
+      isbn13: "some updated isbn13",
+      purchase_link: "some updated purchase_link",
+      rating: 43,
+      slug: "some updated slug",
+      sortable_title: "some updated sortable_title",
+      thoughts: "some updated thoughts",
+      title: "some updated title",
+      year: 43
+    }
+    @invalid_attrs %{
+      category: nil,
+      isbn13: nil,
+      purchase_link: nil,
+      rating: nil,
+      slug: nil,
+      sortable_title: nil,
+      thoughts: nil,
+      title: nil,
+      year: nil
+    }
 
     def book_fixture(attrs \\ %{}) do
       {:ok, book} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Library.create_book()
+        |> Library.force_create_book()
 
       book
     end
@@ -30,16 +60,30 @@ defmodule Library.BookTest do
     end
 
     test "create_book/1 with valid data creates a book" do
-      assert {:ok, %Book{} = book} = Library.create_book(@valid_attrs)
-      assert book.category == "some category"
-      assert book.isbn13 == "some isbn13"
-      assert book.purchase_link == "some purchase_link"
-      assert book.rating == 42
-      assert book.slug == "some slug"
-      assert book.sortable_title == "some sortable_title"
-      assert book.thoughts == "some thoughts"
-      assert book.title == "some title"
-      assert book.year == 42
+      assert {:ok, %Book{} = book} = Library.create_book(%{title: "A New Book"})
+      assert book.category == nil
+      assert book.isbn13 == nil
+      assert book.purchase_link == nil
+      assert book.rating == nil
+      assert book.slug == "a-new-book"
+      assert book.sortable_title == "New Book"
+      assert book.thoughts == nil
+      assert book.title == "A New Book"
+      assert book.year == nil
+    end
+
+    test "create_book/1 with valid data creates a sortable title removing 'the'" do
+      assert {:ok, %Book{} = book} = Library.create_book(%{title: "The New Book"})
+      assert book.slug == "the-new-book"
+      assert book.sortable_title == "New Book"
+      assert book.title == "The New Book"
+    end
+
+    test "create_book/1 with valid data creates a sortable title when there is no prefix to remove" do
+      assert {:ok, %Book{} = book} = Library.create_book(%{title: "New Book"})
+      assert book.slug == "new-book"
+      assert book.sortable_title == "New Book"
+      assert book.title == "New Book"
     end
 
     test "create_book/1 with invalid data returns error changeset" do

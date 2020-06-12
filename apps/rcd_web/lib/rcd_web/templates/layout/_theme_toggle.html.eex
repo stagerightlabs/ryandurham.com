@@ -2,12 +2,14 @@
   <p
     x-show="mode === 'light'"
     @click="mode = theme.toggle()"
+    style="display: none"
   >
     <%= render RcdWeb.IconsView, "_moon.html", class: "w-6 cursor-pointer" %>
   </p>
   <p
     x-show="mode === 'dark'"
     @click="mode = theme.toggle()"
+    style="display: none"
   >
     <%= render RcdWeb.IconsView, "_sun.html", class: "w-6 cursor-pointer" %>
   </p>

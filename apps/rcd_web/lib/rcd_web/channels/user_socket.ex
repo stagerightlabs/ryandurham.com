@@ -3,6 +3,7 @@ defmodule RcdWeb.UserSocket do
 
   ## Channels
   # channel "room:*", RcdWeb.RoomChannel
+  channel "js:*", RcdWeb.JavascriptChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

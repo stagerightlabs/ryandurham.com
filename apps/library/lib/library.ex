@@ -59,6 +59,36 @@ defmodule Library do
   def get_author_by_slug!(slug), do: Repo.get_by!(Author, slug: slug)
 
   @doc """
+  Gets a single author, queried by slug.
+
+  ## Examples
+
+      iex> get_author("slug")
+      %Author{}
+
+      iex> get_author!("invalid")
+      nil
+
+  """
+  def get_author_by_slug(slug), do: Repo.get_by(Author, slug: slug)
+
+  @doc """
+  Search for authors with a query string
+  """
+  def query_authors(term) do
+    term = "%#{term}%"
+
+    Repo.all(
+      from(
+        a in Author,
+        where: ilike(a.name, ^term),
+        order_by: a.sortable_name,
+        limit: 20
+      )
+    )
+  end
+
+  @doc """
   Creates a author.
 
   ## Examples
@@ -162,6 +192,22 @@ defmodule Library do
   def get_book!(id), do: Repo.get!(Book, id)
 
   @doc """
+  Gets a single book by slug.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_book!(123)
+      %Book{}
+
+      iex> get_book!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book_by_slug!(slug), do: Repo.get_by!(Book, slug: slug)
+
+  @doc """
   Creates a book.
 
   ## Examples
@@ -175,7 +221,16 @@ defmodule Library do
   """
   def create_book(attrs \\ %{}) do
     %Book{}
-    |> Book.changeset(attrs)
+    |> Book.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Create a book, bypassing the creation validation rules.
+  """
+  def force_create_book(attrs \\ %{}) do
+    %Book{}
+    |> Book.update_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -193,7 +248,7 @@ defmodule Library do
   """
   def update_book(%Book{} = book, attrs) do
     book
-    |> Book.changeset(attrs)
+    |> Book.update_changeset(attrs)
     |> Repo.update()
   end
 
@@ -223,6 +278,48 @@ defmodule Library do
 
   """
   def change_book(%Book{} = book, attrs \\ %{}) do
-    Book.changeset(book, attrs)
+    Book.update_changeset(book, attrs)
+  end
+
+  @doc """
+  Add an author to a book.
+  """
+  def add_author_to_book(book, author) do
+    book = Repo.preload(book, :authors)
+
+    book
+    |> Book.changeset_authors([author | book.authors])
+    |> Repo.update()
+  end
+
+  @doc """
+  Remove an author from a book
+  """
+  def remove_author_from_book(book, author) do
+    book = Repo.preload(book, :authors)
+
+    index =
+      Enum.find_index(book.authors, fn a ->
+        author.slug == a.slug
+      end)
+
+    book
+    |> Book.changeset_authors(Enum.slice(book.authors, index, 1))
+    |> Repo.update()
+  end
+
+  @doc """
+  Replace the list of authors associated with a book.
+  """
+  def replace_book_authors(book, authors) when is_list(authors) do
+    book = Repo.preload(book, :authors)
+
+    book
+    |> Book.changeset_authors(authors)
+    |> Repo.update()
+  end
+
+  def replace_book_authors(book, author) do
+    replace_book_authors(book, [author])
   end
 end

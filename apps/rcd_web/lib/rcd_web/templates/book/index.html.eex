@@ -1,42 +1,19 @@
-<h1>Listing Books</h1>
+<header>
+  <h1>Books</h1>
+  <aside>
+    <a href="<%= Routes.book_path(@conn, :new) %>" class="btn btn-primary">
+      <%= render RcdWeb.IconsView, "_plus.html", class: "w-4 mr-2" %>
+      New Book
+    </a>
+  </aside>
+</header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Sortable title</th>
-      <th>Slug</th>
-      <th>Year</th>
-      <th>Isbn13</th>
-      <th>Purchase link</th>
-      <th>Rating</th>
-      <th>Thoughts</th>
-      <th>Category</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for book <- @books do %>
-    <tr>
-      <td><%= book.title %></td>
-      <td><%= book.sortable_title %></td>
-      <td><%= book.slug %></td>
-      <td><%= book.year %></td>
-      <td><%= book.isbn13 %></td>
-      <td><%= book.purchase_link %></td>
-      <td><%= book.rating %></td>
-      <td><%= book.thoughts %></td>
-      <td><%= book.category %></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.book_path(@conn, :show, book) %></span>
-        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book) %></span>
-        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
+<%= for %{letter: letter, group: group, final: final} <- @books do %>
+  <div class="mb-4">
+    <h2 class="mb-2"><%= letter %></h2>
+    <%= for book <- group do %>
+      <%= link book.title, to: Routes.book_path(@conn, :show, book.slug) %>
+      <%= if final != book, do: ', ' %>
+    <% end %>
+  </div>
 <% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>

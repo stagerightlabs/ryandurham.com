@@ -1,0 +1,27 @@
+<%= render_layout RcdWeb.LayoutView, "portal.html", assigns do %>
+  <div>
+    <div class="sm:hidden my-4">
+      <select aria-label="Selected tab" class="block w-full" x-data @change="window.location = $event.target.value">
+        <option value="<%= Routes.book_path(@conn, :index) %>" <%= if path_contains(@conn, "books"), do: "selected" %>>Books</option>
+        <option value="<%= Routes.author_path(@conn, :index) %>" <%= if path_contains(@conn, "authors"), do: "selected" %>>Authors</option>
+      </select>
+    </div>
+    <div class="hidden sm:block my-4">
+      <div class="border-b dark:border-owl-600 border-owl-900">
+        <nav class="-mb-px flex">
+          <%= link "Books",
+            to: Routes.book_path(@conn, :index),
+            class: tab_classes(path_contains(@conn, "books"), "w-1/2"),
+            aria_current: if path_contains(@conn, "books"), do: "page", else: nil
+          %>
+          <%= link "Authors",
+            to: Routes.author_path(@conn, :index),
+            class: tab_classes(path_contains(@conn, "authors"), "w-1/2"),
+            aria_current: if path_contains(@conn, "authors"), do: "page", else: nil
+          %>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <%= @inner_content %>
+<% end %>
