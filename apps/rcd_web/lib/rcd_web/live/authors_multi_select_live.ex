@@ -202,7 +202,6 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
 
   defp reset(socket) do
     assign(socket, query: "empty", results: [])
-    {:ok, socket}
   end
 
   defp make_selection(selection, socket) do
