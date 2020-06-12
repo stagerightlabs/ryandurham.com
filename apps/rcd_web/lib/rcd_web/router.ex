@@ -68,6 +68,7 @@ defmodule RcdWeb.Router do
     put "/library/authors/:slug", AuthorController, :update
     delete "/library/authors/:slug", AuthorController, :delete
 
+    get "/library", BookController, :index
     get "/library/books", BookController, :index
     get "/library/books/new", BookController, :new
     post "/library/books", BookController, :create
