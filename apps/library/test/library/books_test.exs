@@ -1,10 +1,10 @@
-defmodule Library.BookTest do
+defmodule Library.BooksTest do
   use Library.DataCase
 
-  alias Library
+  alias Library.Books
+  alias Library.Books.Book
 
   describe "books" do
-    alias Library.Book
 
     @valid_attrs %{
       category: "some category",
@@ -44,23 +44,23 @@ defmodule Library.BookTest do
       {:ok, book} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Library.force_create_book()
+        |> Books.force_create_book()
 
       book
     end
 
     test "list_books/0 returns all books" do
       book = book_fixture()
-      assert Library.list_books() == [book]
+      assert Books.list_books() == [book]
     end
 
     test "get_book!/1 returns the book with given id" do
       book = book_fixture()
-      assert Library.get_book!(book.id) == book
+      assert Books.get_book!(book.id) == book
     end
 
     test "create_book/1 with valid data creates a book" do
-      assert {:ok, %Book{} = book} = Library.create_book(%{title: "A New Book"})
+      assert {:ok, %Book{} = book} = Books.create_book(%{title: "A New Book"})
       assert book.category == nil
       assert book.isbn13 == nil
       assert book.purchase_link == nil
@@ -73,26 +73,26 @@ defmodule Library.BookTest do
     end
 
     test "create_book/1 with valid data creates a sortable title removing 'the'" do
-      assert {:ok, %Book{} = book} = Library.create_book(%{title: "The New Book"})
+      assert {:ok, %Book{} = book} = Books.create_book(%{title: "The New Book"})
       assert book.slug == "the-new-book"
       assert book.sortable_title == "New Book"
       assert book.title == "The New Book"
     end
 
     test "create_book/1 with valid data creates a sortable title when there is no prefix to remove" do
-      assert {:ok, %Book{} = book} = Library.create_book(%{title: "New Book"})
+      assert {:ok, %Book{} = book} = Books.create_book(%{title: "New Book"})
       assert book.slug == "new-book"
       assert book.sortable_title == "New Book"
       assert book.title == "New Book"
     end
 
     test "create_book/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Library.create_book(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Books.create_book(@invalid_attrs)
     end
 
     test "update_book/2 with valid data updates the book" do
       book = book_fixture()
-      assert {:ok, %Book{} = book} = Library.update_book(book, @update_attrs)
+      assert {:ok, %Book{} = book} = Books.update_book(book, @update_attrs)
       assert book.category == "some updated category"
       assert book.isbn13 == "some updated isbn13"
       assert book.purchase_link == "some updated purchase_link"
@@ -106,19 +106,19 @@ defmodule Library.BookTest do
 
     test "update_book/2 with invalid data returns error changeset" do
       book = book_fixture()
-      assert {:error, %Ecto.Changeset{}} = Library.update_book(book, @invalid_attrs)
-      assert book == Library.get_book!(book.id)
+      assert {:error, %Ecto.Changeset{}} = Books.update_book(book, @invalid_attrs)
+      assert book == Books.get_book!(book.id)
     end
 
     test "delete_book/1 deletes the book" do
       book = book_fixture()
-      assert {:ok, %Book{}} = Library.delete_book(book)
-      assert_raise Ecto.NoResultsError, fn -> Library.get_book!(book.id) end
+      assert {:ok, %Book{}} = Books.delete_book(book)
+      assert_raise Ecto.NoResultsError, fn -> Books.get_book!(book.id) end
     end
 
     test "change_book/1 returns a book changeset" do
       book = book_fixture()
-      assert %Ecto.Changeset{} = Library.change_book(book)
+      assert %Ecto.Changeset{} = Books.change_book(book)
     end
   end
 end

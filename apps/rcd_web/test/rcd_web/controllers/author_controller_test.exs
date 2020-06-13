@@ -1,7 +1,7 @@
 defmodule RcdWeb.AuthorControllerTest do
   use RcdWeb.ConnCase
 
-  alias Library
+  alias Library.Authors
 
   @create_attrs %{
     name: "some name",
@@ -18,7 +18,7 @@ defmodule RcdWeb.AuthorControllerTest do
   @invalid_attrs %{name: nil, slug: nil, sortable_name: nil, url: nil}
 
   def fixture(:author) do
-    {:ok, author} = Library.create_author(@create_attrs)
+    {:ok, author} = Authors.create_author(@create_attrs)
     author
   end
 

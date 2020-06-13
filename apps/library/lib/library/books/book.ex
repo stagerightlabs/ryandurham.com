@@ -1,4 +1,4 @@
-defmodule Library.Book do
+defmodule Library.Books.Book do
   use Ecto.Schema
 
   import Ecto.Changeset
@@ -17,7 +17,7 @@ defmodule Library.Book do
     field :thoughts, :string
     field :title, :string
     field :year, :integer
-    many_to_many :authors, Library.Author, join_through: "authors_books", on_replace: :delete
+    many_to_many :authors, Library.Authors.Author, join_through: "authors_books", on_replace: :delete
 
     timestamps()
   end

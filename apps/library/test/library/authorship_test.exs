@@ -1,8 +1,9 @@
 defmodule Library.AuthorShipTest do
   use Library.DataCase
 
-  alias Library
-  alias Library.Book
+  alias Library.Books
+  alias Library.Authors
+  alias Library.Books.Book
 
   describe "associate authors with books" do
     def author_fixture(attrs \\ %{}) do
@@ -11,7 +12,7 @@ defmodule Library.AuthorShipTest do
         |> Enum.into(%{
           name: "some name"
         })
-        |> Library.create_author()
+        |> Authors.create_author()
 
       author
     end
@@ -22,7 +23,7 @@ defmodule Library.AuthorShipTest do
         |> Enum.into(%{
           title: "some title"
         })
-        |> Library.create_book()
+        |> Books.create_book()
 
       book
     end
@@ -31,7 +32,7 @@ defmodule Library.AuthorShipTest do
       book = book_fixture()
       author = author_fixture()
 
-      assert {:ok, %Book{} = book} = Library.add_author_to_book(book, author)
+      assert {:ok, %Book{} = book} = Books.add_author_to_book(book, author)
     end
 
     test "multiple authors can be associated with a book" do
@@ -39,8 +40,8 @@ defmodule Library.AuthorShipTest do
       first_author = author_fixture(%{name: "Neal Stephenson"})
       second_author = author_fixture(%{name: "Cooper Moo"})
 
-      Library.add_author_to_book(book, first_author)
-      Library.add_author_to_book(book, second_author)
+      Books.add_author_to_book(book, first_author)
+      Books.add_author_to_book(book, second_author)
 
       book = Repo.preload(book, :authors)
       assert length(book.authors) == 2
@@ -51,10 +52,10 @@ defmodule Library.AuthorShipTest do
       first_author = author_fixture(%{name: "Neal Stephenson"})
       second_author = author_fixture(%{name: "Cooper Moo"})
 
-      Library.add_author_to_book(book, first_author)
-      Library.add_author_to_book(book, second_author)
+      Books.add_author_to_book(book, first_author)
+      Books.add_author_to_book(book, second_author)
 
-      Library.remove_author_from_book(book, second_author)
+      Books.remove_author_from_book(book, second_author)
 
       book = Repo.preload(book, :authors)
       assert length(book.authors) == 1
@@ -65,9 +66,9 @@ defmodule Library.AuthorShipTest do
       first_author = author_fixture(%{name: "Neal Stephenson"})
       second_author = author_fixture(%{name: "Cooper Moo"})
 
-      Library.add_author_to_book(book, first_author)
+      Books.add_author_to_book(book, first_author)
 
-      Library.replace_book_authors(book, second_author)
+      Books.replace_book_authors(book, second_author)
 
       book = Repo.preload(book, :authors)
       assert book.authors |> List.first() == second_author

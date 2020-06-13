@@ -2,13 +2,14 @@ defmodule RcdWeb.AuthorController do
   use RcdWeb, :controller
 
   alias Library
-  alias Library.Author
+  alias Library.Authors
+  alias Library.Authors.Author
 
   plug :put_layout, {RcdWeb.LayoutView, "library.html"}
 
   def index(conn, _params) do
     authors =
-      Library.list_authors()
+      Authors.list_authors()
       |> Enum.group_by(fn author -> String.first(author.sortable_name) end)
       |> Enum.map(fn {letter, group} ->
         %{
@@ -22,12 +23,12 @@ defmodule RcdWeb.AuthorController do
   end
 
   def new(conn, _params) do
-    changeset = Library.change_author(%Author{})
+    changeset = Authors.change_author(%Author{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"author" => author_params}) do
-    case Library.create_author(author_params) do
+    case Authors.create_author(author_params) do
       {:ok, author} ->
         conn
         |> put_flash(:info, "#{author.name} created successfully.")
@@ -39,20 +40,20 @@ defmodule RcdWeb.AuthorController do
   end
 
   def show(conn, %{"slug" => slug}) do
-    author = Library.get_author_by_slug!(slug)
+    author = Authors.get_author_by_slug!(slug)
     render(conn, "show.html", author: author)
   end
 
   def edit(conn, %{"slug" => slug}) do
-    author = Library.get_author_by_slug!(slug)
-    changeset = Library.change_author(author)
+    author = Authors.get_author_by_slug!(slug)
+    changeset = Authors.change_author(author)
     render(conn, "edit.html", author: author, changeset: changeset)
   end
 
   def update(conn, %{"slug" => slug, "author" => author_params}) do
-    author = Library.get_author_by_slug!(slug)
+    author = Authors.get_author_by_slug!(slug)
 
-    case Library.update_author(author, author_params) do
+    case Authors.update_author(author, author_params) do
       {:ok, author} ->
         conn
         |> put_flash(:info, "#{author.name} updated successfully.")
@@ -64,8 +65,8 @@ defmodule RcdWeb.AuthorController do
   end
 
   def delete(conn, %{"slug" => slug}) do
-    author = Library.get_author_by_slug!(slug)
-    {:ok, _author} = Library.delete_author(author)
+    author = Authors.get_author_by_slug!(slug)
+    {:ok, _author} = Authors.delete_author(author)
 
     conn
     |> put_flash(:info, "#{author.name} removed successfully.")

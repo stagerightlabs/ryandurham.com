@@ -1,7 +1,8 @@
 defmodule RcdWeb.BookControllerTest do
   use RcdWeb.ConnCase
 
-  alias Library
+  alias Library.Authors
+  alias Library.Books
   alias Library.Repo
 
   @create_attrs %{title: "Some Title"}
@@ -29,13 +30,13 @@ defmodule RcdWeb.BookControllerTest do
   }
 
   def fixture(:book) do
-    {:ok, book} = Library.create_book(@create_attrs)
+    {:ok, book} = Books.create_book(@create_attrs)
     book
   end
 
   def fixture(:author) do
     {:ok, author} =
-      Library.create_author(%{
+      Authors.create_author(%{
         name: "some name",
         slug: "some slug",
         sortable_name: "some sortable_name",
@@ -116,14 +117,14 @@ defmodule RcdWeb.BookControllerTest do
       )
 
       book =
-        Library.get_book_by_slug!(book.slug)
+        Books.get_book_by_slug!(book.slug)
         |> Repo.preload(:authors)
 
       assert book.authors == [author]
     end
 
     test "removes an author from a book", %{conn: conn, book: book, author: author} do
-      Library.add_author_to_book(book, author)
+      Books.add_author_to_book(book, author)
       book = Repo.preload(book, :authors)
       assert length(book.authors) == 1
 
@@ -133,7 +134,7 @@ defmodule RcdWeb.BookControllerTest do
       )
 
       book =
-        Library.get_book_by_slug!(book.slug)
+        Books.get_book_by_slug!(book.slug)
         |> Repo.preload(:authors)
 
       assert book.authors == []

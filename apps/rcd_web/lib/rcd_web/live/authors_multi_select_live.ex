@@ -1,7 +1,7 @@
 defmodule RcdWeb.AuthorsMultiSelectLive do
   use Phoenix.LiveView
 
-  alias Library
+  alias Library.Authors
 
   def mount(_params, %{"user_token" => token, "authors" => authors}, socket) do
     socket =
@@ -92,7 +92,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     selection =
       case Enum.at(socket.assigns.results, socket.assigns.highlighted, nil) do
         nil ->
-          Library.create_author(%{name: socket.assigns.query})
+          Authors.create_author(%{name: socket.assigns.query})
 
         author ->
           {:ok, author}
@@ -172,7 +172,7 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
   end
 
   def handle_info({:search_authors, query}, socket) do
-    results = Library.query_authors(query)
+    results = Authors.query_authors(query)
 
     socket =
       assign(socket,

@@ -2,6 +2,15 @@ use Mix.Config
 
 # Configure your database
 config :library, Library.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "library_dev",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# Configure your database
+config :library, Library.Repo,
   username: "ryan",
   password: "secret",
   database: "ryandurham.com",
