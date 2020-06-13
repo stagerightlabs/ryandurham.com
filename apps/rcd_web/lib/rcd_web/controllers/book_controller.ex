@@ -1,15 +1,16 @@
 defmodule RcdWeb.BookController do
   use RcdWeb, :controller
 
-  alias Library
-  alias Library.Book
+  alias Library.Authors
+  alias Library.Books
+  alias Library.Books.Book
   alias Library.Repo
 
   plug :put_layout, {RcdWeb.LayoutView, "library.html"}
 
   def index(conn, _params) do
     books =
-      Library.list_books()
+      Books.list_books()
       |> Enum.group_by(fn book -> String.first(book.sortable_title) end)
       |> Enum.map(fn {letter, group} ->
         %{
@@ -23,12 +24,12 @@ defmodule RcdWeb.BookController do
   end
 
   def new(conn, _params) do
-    changeset = Library.change_book(%Book{})
+    changeset = Books.change_book(%Book{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"book" => book_params}) do
-    case Library.create_book(book_params) do
+    case Books.create_book(book_params) do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book created successfully.")
@@ -41,7 +42,7 @@ defmodule RcdWeb.BookController do
 
   def show(conn, %{"slug" => slug}) do
     book =
-      Library.get_book_by_slug!(slug)
+      Books.get_book_by_slug!(slug)
       |> Repo.preload(:authors)
 
     render(conn, "show.html", book: book)
@@ -49,26 +50,26 @@ defmodule RcdWeb.BookController do
 
   def edit(conn, %{"slug" => slug}) do
     book =
-      Library.get_book_by_slug!(slug)
+      Books.get_book_by_slug!(slug)
       |> Repo.preload(:authors)
 
-    changeset = Library.change_book(book)
+    changeset = Books.change_book(book)
     render(conn, "edit.html", book: book, changeset: changeset, authors: book.authors)
   end
 
   def update(conn, %{"slug" => slug, "book" => book_params, "authors" => authors}) do
     book =
-      Library.get_book_by_slug!(slug)
+      Books.get_book_by_slug!(slug)
       |> Repo.preload(:authors)
 
     authors =
       Enum.map(authors, fn slug ->
-        Library.get_author_by_slug(slug)
+        Authors.get_author_by_slug(slug)
       end)
 
-    Library.replace_book_authors(book, authors)
+    Books.replace_book_authors(book, authors)
 
-    case Library.update_book(book, book_params) do
+    case Books.update_book(book, book_params) do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book updated successfully.")
@@ -84,8 +85,8 @@ defmodule RcdWeb.BookController do
   end
 
   def delete(conn, %{"slug" => slug}) do
-    book = Library.get_book_by_slug!(slug)
-    {:ok, _book} = Library.delete_book(book)
+    book = Books.get_book_by_slug!(slug)
+    {:ok, _book} = Books.delete_book(book)
 
     conn
     |> put_flash(:info, "Book deleted successfully.")

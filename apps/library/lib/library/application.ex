@@ -7,7 +7,12 @@ defmodule Library.Application do
 
   def start(_type, _args) do
     children = [
-      Library.Repo
+      # Start the Ecto repository
+      Library.Repo,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Library.PubSub}
+      # Start a worker by calling: Library.Worker.start_link(arg)
+      # {Library.Worker, arg}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Library.Supervisor)
