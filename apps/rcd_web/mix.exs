@@ -50,7 +50,7 @@ defmodule RcdWeb.MixProject do
       {:phoenix_live_dashboard, "~> 0.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.12.1"},
-      {:phx_gen_auth, "~> 0.2.0", only: [:dev], runtime: false},
+      {:phx_gen_auth, "~> 0.3.0", only: [:dev], runtime: false},
       {:plug_cowboy, "~> 2.1"},
       {:sentry, "~> 7.0"},
       {:telemetry_poller, "~> 0.4"},

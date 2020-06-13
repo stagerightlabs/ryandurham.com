@@ -185,7 +185,7 @@ defmodule Admin.Accounts do
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for changing the user password.
+  Updates the user password.
 
   ## Examples
 
@@ -217,7 +217,7 @@ defmodule Admin.Accounts do
   @doc """
   Generates a session token.
   """
-  def generate_session_token(user) do
+  def generate_user_session_token(user) do
     {token, user_token} = UserToken.build_session_token(user)
     Repo.insert!(user_token)
     token
@@ -234,7 +234,7 @@ defmodule Admin.Accounts do
   @doc """
   Deletes the signed token with the given context.
   """
-  def delete_session_token(token) do
+  def delete_user_session_token(token) do
     Repo.delete_all(UserToken.token_and_context_query(token, "session"))
     :ok
   end
