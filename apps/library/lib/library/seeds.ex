@@ -1,10 +1,15 @@
 defmodule Library.Seeds do
-  alias Library.Author
-  alias Library.Book
+
+  alias Library.Authors
+  alias Library.Authors.Author
+  alias Library.Books
+  alias Library.Books.Book
   alias Library.Repo
 
   def run do
     seed_authors()
+    seed_books()
+    seed_authorship()
   end
 
   @author_data [
@@ -2954,7 +2959,7 @@ defmodule Library.Seeds do
     %{book_slug: "the-girl-who-played-with-fire", completed_at: "2010-06-01 15:46:35-07"},
     %{book_slug: "the-second-objective", completed_at: "2010-06-02 15:48:42-07"},
     %{book_slug: "the-golden-compass", completed_at: "2010-06-03 15:52:33-07"},
-    %{book_slug: 1984, completed_at: "2010-07-02 15:57:30-07"},
+    %{book_slug: "1984", completed_at: "2010-07-02 15:57:30-07"},
     %{book_slug: "hardwired", completed_at: "2010-07-03 15:59:26-07"},
     %{
       book_slug: "a-connecticut-yankee-in-king-arthurs-court",
@@ -3230,6 +3235,9 @@ defmodule Library.Seeds do
     %{book_slug: "digital-minimalism", completed_at: "2020-02-22 11:58:00-08"}
   ]
 
+  @doc """
+  Insert author records into the database.
+  """
   def seed_authors do
     Enum.each(@author_data, fn author ->
       struct(Author, author)
@@ -3239,6 +3247,9 @@ defmodule Library.Seeds do
     IO.puts("inserted authors")
   end
 
+  @doc """
+  Insert book records into the database.
+  """
   def seed_books do
     Enum.each(@book_data, fn book ->
       struct(Book, book)
@@ -3248,12 +3259,26 @@ defmodule Library.Seeds do
     IO.puts("inserted books")
   end
 
+  @doc """
+  Insert authorship records into the database.
+  """
   def seed_authorship do
     Enum.each(@authorship_data, fn authorship ->
-      book = Library.get_book_by_slug!(authorship.book_slug)
-      author = Library.get_author_by_slug!(authorship.author_slug)
+      book = Books.get_book_by_slug!(authorship.book_slug)
+      author = Authors.get_author_by_slug!(authorship.author_slug)
 
-      Library.add_author_to_book(book, author)
+      Books.add_author_to_book(book, author)
+    end)
+  end
+
+  @doc """
+  Insert book completion timestamps into the database.
+  """
+  def seed_completions do
+    Enum.each(@completions, fn completion ->
+      book = Books.get_book_by_slug!(completion.book_slug)
+
+      Books.create_book_completion(book, completion.completed_at)
     end)
   end
 end

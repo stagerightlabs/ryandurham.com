@@ -77,6 +77,8 @@ defmodule RcdWeb.Router do
     patch "/library/books/:slug", BookController, :update
     put "/library/books/:slug", BookController, :update
     delete "/library/books/:slug", BookController, :delete
+    post "/library/books/:slug/completions", BookCompletionController, :create
+    delete "/library/books/:slug/completions/:id", BookCompletionController, :delete
   end
 
   scope "/" do

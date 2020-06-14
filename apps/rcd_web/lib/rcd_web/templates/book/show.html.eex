@@ -1,22 +1,17 @@
 <header>
-  <h1 class="w-full"><%= @book.title %></h1>
+  <h1 class="w-full">
+    <%= @book.title %>
+    <%= if @book.year do %>
+    <small><%= @book.year %></small>
+    <% end %>
+  </h1>
 </header>
 
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-  <div class="grid grid-cols-1 gap-4 order-last sm:order-first">
-    <div>
-      <p><strong>Publication Year</strong></p>
-      <p><%= @book.year %></p>
-    </div>
-    <div>
-      <p><strong>ISBN-13:</strong></p>
-      <p><%= @book.isbn13 %></p>
-    </div>
-  </div>
-  <div class="flex flex-col">
-    <div class="mb-4">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+  <div>
+    <div class="mb-8">
       <%= if ! @book.authors do %>
-      <p><strong>No Author on Record</strong></p>
+        <p><strong>No Author on Record</strong></p>
       <% else %>
         <p><strong><%= if length(@book.authors) == 1, do: "Author", else: "Authors" %></strong></p>
         <%= for author <- @book.authors do %>
@@ -25,18 +20,65 @@
       <% end %>
     </div>
     <div>
+      <p><strong>ISBN-13:</strong></p>
+      <p><%= @book.isbn13 %></p>
+    </div>
+  </div>
+  <div class="">
+    <div class="mb-8">
       <p><strong>Category:</strong></p>
       <p><%= @book.category %></p>
+    </div>
+    <div>
+      <p><strong>Readings</strong></p>
+      <%= if length(@book.completions) > 0 do %>
+        <ul class="list-disc list-inside">
+        <%= for completion <- @book.completions do %>
+          <li>
+            <%= formatted_completion_date(completion.completed_at) %>
+            <%= link to: Routes.book_completion_path(@conn, :delete, @book.slug, completion.id), method: :delete, data: [confirm: "Are you sure?"] do %>
+              <%= Phoenix.View.render RcdWeb.IconsView, "_trashcan.html", class: "w-4 ml-2 inline mb-1 dark:text-owl-400 text-owl-900" %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      <% else  %>
+        <p>This book has not yet been read.</p>
+      <% end %>
+      <div x-data="{ visible: false, today: '<%= today() %>' }">
+        <button x-show="! visible" @click="visible = !visible; if (visible) $nextTick(() => {$refs.input.focus()});">
+          Add Reading
+          <%= Phoenix.View.render RcdWeb.IconsView, "_plus.html", class: "w-4 inline mb-1 dark:text-owl-400 text-owl-900" %>
+        </button>
+        <form
+          x-show="visible"
+          class="flex mt-2"
+          style="display: none"
+          method="POST"
+          action="<%= Routes.book_completion_path(@conn, :create, @book.slug) %>"
+        >
+          <input
+            type="text"
+            name="date"
+            id="completion-date-input"
+            placeholder="YYYY-MM-DD"
+            x-ref="input"
+            x-on:keydown.escape="visible = false"
+            x-model="today"
+          >
+          <input type="hidden" value="<%= csrf_token() %>" name="_csrf_token"/>
+          <button class="btn btn-primary ml-2">Save</button>
+        </form>
+      </div>
     </div>
   </div>
   <div class="order-first sm:order-last">
     <%= link "Edit this Book", to: Routes.book_path(@conn, :edit, @book.slug), class: "btn btn-primary mb-2" %>
     <%= if @book.purchase_link do %>
     <a
-      href="<%= @book.purchase_link %>"
-      target="_blank"
-      class="btn btn-secondary mb-2"
-    >
+       href="<%= @book.purchase_link %>"
+       target="_blank"
+       class="btn btn-secondary mb-2">
       <strong>Purchase link</strong>
       <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 ml-1" %>
     </a>
