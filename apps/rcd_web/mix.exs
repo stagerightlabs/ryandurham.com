@@ -24,7 +24,7 @@ defmodule RcdWeb.MixProject do
   def application do
     [
       mod: {RcdWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools, :os_mon]
+      extra_applications: [:logger, :runtime_tools, :os_mon, :timex]
     ]
   end
 
@@ -55,6 +55,7 @@ defmodule RcdWeb.MixProject do
       {:sentry, "~> 7.0"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
+      {:timex, "~> 3.0"},
       {:tzdata, "~> 1.0.1"},
       {:utilities, in_umbrella: true}
     ]
