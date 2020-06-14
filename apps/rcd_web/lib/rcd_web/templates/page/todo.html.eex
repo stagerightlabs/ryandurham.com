@@ -4,6 +4,10 @@
   <li>Configure production email</li>
   <li>Email templates</li>
   <li>404 Page</li>
+  <li>Colophon Page for attribution</li>
+  <li>Create new home page with completions</li>
+  <li>Add book list to author detail page</li>
+  <li>Truncate completions table in seed_completions/0</li>
 </ul>
 
 

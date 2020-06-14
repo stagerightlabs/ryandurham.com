@@ -4,6 +4,7 @@ defmodule Library.Books do
   """
 
   alias Library.Books.Book
+  alias Library.Books.Completion
   alias Library.Repo
 
   @doc """
@@ -166,4 +167,59 @@ defmodule Library.Books do
   def replace_book_authors(book, author) do
     replace_book_authors(book, [author])
   end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking book completions.
+
+  ## Examples
+
+      iex> change_completion(completion)
+      %Ecto.Changeset{data: %Completion{}}
+
+  """
+  def change_completion(%Completion{} = completion, attrs \\ %{}) do
+    Completion.changeset(completion, attrs)
+  end
+
+  @doc """
+  Gets a single completion.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_book!(123)
+      %Book{}
+
+      iex> get_book!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_completion!(id), do: Repo.get!(Completion, id)
+
+  @doc """
+  Creates a book completion.
+
+  ## Examples
+
+      iex> create_book_completion(book, completion)
+      {:ok, %Completion{}}
+
+      iex> create_book_completion(book, badvalue)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_book_completion(book, timestamp) do
+    %Completion{}
+    |> Completion.changeset(%{book_id: book.id, completed_at: timestamp})
+    |> Repo.insert()
+  end
+
+  @doc """
+  Remove a book completion
+  """
+  def remove_book_completion(%Completion{} = completion) do
+    Repo.delete(completion)
+  end
+
 end

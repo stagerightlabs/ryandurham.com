@@ -18,6 +18,7 @@ defmodule Library.Books.Book do
     field :title, :string
     field :year, :integer
     many_to_many :authors, Library.Authors.Author, join_through: "authors_books", on_replace: :delete
+    has_many :completions, Library.Books.Completion
 
     timestamps()
   end

@@ -44,6 +44,7 @@ defmodule RcdWeb.BookController do
     book =
       Books.get_book_by_slug!(slug)
       |> Repo.preload(:authors)
+      |> Repo.preload(:completions)
 
     render(conn, "show.html", book: book)
   end
