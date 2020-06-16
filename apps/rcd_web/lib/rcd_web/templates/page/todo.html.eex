@@ -8,6 +8,7 @@
   <li>Create new home page with completions</li>
   <li>Add book list to author detail page</li>
   <li>Truncate completions table in seed_completions/0</li>
+  <li><a href="https://github.com/aaronrenner/phx_gen_auth/commit/bec578eb2b5987c2567b24d112ffc510510d5f4d">Bump Phoenix to 1.5.2</a></li>
 </ul>
 
 

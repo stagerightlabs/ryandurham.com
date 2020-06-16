@@ -222,4 +222,38 @@ defmodule Library.Books do
     Repo.delete(completion)
   end
 
+  @doc """
+  Fetch all completion records
+  """
+  def list_completions do
+    completion_lookup_query()
+    |> Repo.all()
+  end
+
+  def completions_for_year(year) do
+    import Ecto.Query, only: [from: 2]
+
+    year = Timex.parse!(year, "{YYYY}")
+    start = Timex.beginning_of_year(year)
+    stop = Timex.end_of_year(year)
+
+    query = completion_lookup_query()
+
+    from(
+      c in query,
+      where: c.completed_at > ^start,
+      where: c.completed_at <= ^stop
+    )
+    |>Repo.all()
+  end
+
+  defp completion_lookup_query do
+    import Ecto.Query, only: [from: 2]
+
+    from(
+      c in Completion,
+      preload: [book: :authors],
+      order_by: [desc: c.completed_at]
+    )
+  end
 end

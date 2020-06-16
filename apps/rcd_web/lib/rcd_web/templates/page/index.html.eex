@@ -1,3 +1,18 @@
-<section class="absolute text-2xl inset-0 flex items-center justify-center z-0">
-  <p>ryandurham.com</p>
+<section>
+  <%= if length(@readings) == 0 do %>
+  <p class="text-center my-16 text-2xl"><em>"The impediment to action advances action. <br />What stands in the way becomes the way."</em> <br />- Marcus Aurelius</p>
+  <% else %>
+    <h2 class="text-center mb-4"><%= @year %> Reading</h2>
+    <%= for reading <- @readings do %>
+      <p class="my-1">
+        <em><%= reading.book.title %></em>
+        <%= if length(reading.book.authors) > 0 do %>
+          by <%= RcdWeb.ReadingListView.author_list(reading.book.authors) %>
+        <% end %>
+      </p>
+    <% end %>
+    <p class="text-owl-600 my-8 text-center">
+      <%= link("Past Years...", to: Routes.reading_list_path(@conn, :index)) %>
+    </p>
+  <% end %>
 </section>
