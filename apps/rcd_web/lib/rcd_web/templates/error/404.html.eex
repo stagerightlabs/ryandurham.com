@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen font-dm">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ryandurham.com</title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+  <%= csrf_meta_tag() %>
+</head>
+
+<body class="h-screen bg-owl-100 dark:bg-owl-900 text-owl-900 dark:text-owl-400">
+  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 sm:mb-8">
+    <div class="max-w-3xl mx-auto flex flex-col items-center">
+      <div class="mt-24 flex items-center w-16 sm:w-24">
+        <%= render RcdWeb.IconsView, "_moose.html", class: "w-full fill-current dark:text-owl-400 text-owl-900" %>
+      </div>
+    </div>
+  </header>
+  <main role="main">
+    <section class="text-center">
+        <h1 class="my-16 text-5xl">404</h1>
+        <p class="text-2xl">The page you are looking for does not exist.</p>
+    </section>
+  </main>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+</body>
+</html>
