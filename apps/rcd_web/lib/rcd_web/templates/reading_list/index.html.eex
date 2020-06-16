@@ -1,0 +1,17 @@
+<section class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <h2 class="text-center mb-4">Reading List</h2>
+
+  <%= for {year, group} <- @readings do %>
+    <div class="mb-8">
+      <h3><%= year %></h3>
+      <%= for reading <- group do %>
+        <p class="my-1">
+          <em><%= reading.book.title %></em>
+          <%= if length(reading.book.authors) > 0 do %>
+            by <%= author_list(reading.book.authors) %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</section>

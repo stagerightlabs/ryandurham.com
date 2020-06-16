@@ -28,6 +28,7 @@ defmodule RcdWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/reading", ReadingListController, :index
   end
 
   # Other scopes may use custom stacks.
