@@ -5,7 +5,7 @@ defmodule RcdWeb.UserSessionController do
   alias RcdWeb.UserAuth
 
   def new(conn, _params) do
-    render(conn, "new.html", error_message: nil)
+    render(conn, "new.html", error_message: nil, page_title: "Login")
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -14,7 +14,7 @@ defmodule RcdWeb.UserSessionController do
     if user = Accounts.get_user_by_email_and_password(email, password) do
       UserAuth.login_user(conn, user, user_params)
     else
-      render(conn, "new.html", error_message: "Invalid e-mail or password")
+      render(conn, "new.html", error_message: "Invalid e-mail or password", page_title: "Login")
     end
   end
 

@@ -33,6 +33,6 @@ defmodule RcdWeb.PageController do
   Render the colophon page.
   """
   def colophon(conn, _params) do
-    render(conn, "colophon.html")
+    render(conn, "colophon.html", page_title: "Colophon")
   end
 end
