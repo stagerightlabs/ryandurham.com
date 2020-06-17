@@ -1,0 +1,58 @@
+<div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md mb-4">
+    <h2 class="mt-6 text-center">Colophon</h2>
+  </div>
+
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900 text-center sm:text-left">
+
+      <div class="p-2 text-2xl space-y-8">
+        <p class="flex flex-col sm:flex-row sm:justify-between">
+          <strong>Theme</strong>
+          <em><a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">Night Owl</a></em>
+        </p>
+
+        <p class="flex flex-col sm:flex-row sm:justify-between">
+          <strong>Font</strong>
+          <em><a href="https://dank.sh/" target="_blank">Dank Mono</a></em>
+        </p>
+
+        <p class="flex flex-col sm:flex-row sm:justify-between">
+          <strong>Icons</strong>
+          <em><a href="http://heroicons.dev" target="_blank">Heroicons</a></em>
+        </p>
+
+        <p class="flex flex-col sm:flex-row sm:justify-between">
+          <strong>Moose</strong>
+           <em><a href="https://www.flaticon.com/authors/monkik" target="_blank">monkik</a></em>
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-owl-600"></div>
+          </div>
+          <div class="relative flex justify-center text-sm leading-5"></div>
+        </div>
+
+        <div class="mt-6 flex ">
+          <button
+            @click="mode = theme.toggle()"
+            x-data="{ mode: window.theme.mode }"
+            class="btn btn-primary w-full"
+          >
+            <span x-show="mode === 'light'" style="display: none">
+              <%= render RcdWeb.IconsView, "_moon.html", class: "w-6 cursor-pointer" %>
+            </span>
+            <span x-show="mode === 'dark'" style="display: none">
+              <%= render RcdWeb.IconsView, "_sun.html", class: "w-6 cursor-pointer" %>
+            </span>
+            <span class="ml-2">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

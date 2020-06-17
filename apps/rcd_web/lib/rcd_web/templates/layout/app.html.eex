@@ -24,11 +24,11 @@
   <footer
     class="fixed right-0 bottom-0 left-0 flex text-owl-900 dark:text-owl-400 p-2 z-10 justify-between"
   >
-    <%= render "_theme_toggle.html", assigns %>
-    <p class="text-xs">
-      <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">night owl</a> /
-      <a href="https://dank.sh/" target="_blank">dank mono</a> /
-      <a href="http://heroicons.dev" target="_blank">heroicons</a>
+    <p>&#169; <em>Ryan Durham</em></p>
+    <p class="">
+      <%= link(to: Routes.page_path(@conn, :colophon)) do %>
+        &pi;
+      <% end %>
     </p>
   </footer>
   <script>

@@ -40,11 +40,6 @@
           </svg>
         </button> %>
 
-        <%# Theme Toggle %>
-        <div class="flex font-display text-owl-900 dark:text-owl-400 p-2 z-10 justify-between">
-          <%= render "_theme_toggle.html", assigns %>
-        </div>
-
         <%# Profile dropdown %>
         <div class="ml-3 relative">
           <div>

@@ -5,7 +5,7 @@
     <div class="mb-8">
       <h3><%= year %></h3>
       <%= for reading <- group do %>
-        <p class="my-1">
+        <p class="my-2">
           <em><%= reading.book.title %></em>
           <%= if length(reading.book.authors) > 0 do %>
             by <%= author_list(reading.book.authors) %>
