@@ -1,30 +1,60 @@
 <div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md mb-4">
-    <h2 class="mt-6 text-center">Colophon</h2>
+    <h2 class="text-center">Colophon</h2>
   </div>
 
   <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900 text-center sm:text-left">
 
-      <div class="p-2 text-2xl space-y-8">
+      <div class="p-2 text-2xl space-y-6">
         <p class="flex flex-col sm:flex-row sm:justify-between">
           <strong>Theme</strong>
-          <em><a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank">Night Owl</a></em>
+          <em>
+            <a href="https://github.com/sdras/night-owl-vscode-theme" target="_blank" >
+              Night Owl
+              <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 inline" %>
+            </a>
+          </em>
         </p>
 
         <p class="flex flex-col sm:flex-row sm:justify-between">
           <strong>Font</strong>
-          <em><a href="https://dank.sh/" target="_blank">Dank Mono</a></em>
+          <em>
+            <a href="https://dank.sh/" target="_blank">
+              Dank Mono
+              <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 inline" %>
+            </a>
+          </em>
         </p>
 
         <p class="flex flex-col sm:flex-row sm:justify-between">
           <strong>Icons</strong>
-          <em><a href="http://heroicons.dev" target="_blank">Heroicons</a></em>
+          <em>
+            <a href="http://heroicons.dev" target="_blank">
+              Heroicons
+              <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 inline" %>
+            </a>
+          </em>
         </p>
 
         <p class="flex flex-col sm:flex-row sm:justify-between">
           <strong>Moose</strong>
-           <em><a href="https://www.flaticon.com/authors/monkik" target="_blank">monkik</a></em>
+          <em>
+            <a href="https://www.flaticon.com/authors/monkik" target="_blank">
+              monkik
+              <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 inline" %>
+            </a>
+          </em>
+        </p>
+
+        <p class="flex flex-col sm:flex-row sm:justify-between">
+          <strong>Source Code</strong>
+          <em>
+            <a href="https://github.com/stagerightlabs/ryandurham.com/" target="_blank">
+              Github
+              <%= render RcdWeb.IconsView, "_external-link.html", class: "w-5 inline" %>
+            </a>
+          </em>
         </p>
       </div>
 
