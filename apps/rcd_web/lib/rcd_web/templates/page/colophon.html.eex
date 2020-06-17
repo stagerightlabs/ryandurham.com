@@ -6,7 +6,7 @@
   <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="py-8 px-4 sm:rounded sm:px-10 border dark:border-owl-600 border-owl-900 text-center sm:text-left">
 
-      <div class="p-2 text-2xl space-y-6">
+      <div class="p-2 text-2xl space-y-4">
         <p class="flex flex-col sm:flex-row sm:justify-between">
           <strong>Theme</strong>
           <em>
