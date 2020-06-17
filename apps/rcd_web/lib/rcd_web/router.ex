@@ -29,6 +29,7 @@ defmodule RcdWeb.Router do
 
     get "/", PageController, :index
     get "/reading", ReadingListController, :index
+    get "/colophon", PageController, :colophon
   end
 
   # Other scopes may use custom stacks.
