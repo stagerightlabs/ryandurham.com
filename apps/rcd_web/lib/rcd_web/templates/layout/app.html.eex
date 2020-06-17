@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= RcdWeb.PageTitle.page_title(@conn.assigns) %></title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
+  <link rel="icon" href="<%= Routes.static_path(@conn, "/images/moose.png") %>">
   <%= csrf_meta_tag() %>
 </head>
 
