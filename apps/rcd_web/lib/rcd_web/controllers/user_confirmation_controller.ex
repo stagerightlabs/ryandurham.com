@@ -4,7 +4,7 @@ defmodule RcdWeb.UserConfirmationController do
   alias Admin.Accounts
 
   def new(conn, _params) do
-    render(conn, "new.html")
+    render(conn, "new.html", page_title: "Confirm Your E-mail Account")
   end
 
   def create(conn, %{"user" => %{"email" => email}}) do

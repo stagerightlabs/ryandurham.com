@@ -12,6 +12,6 @@ defmodule RcdWeb.ReadingListController do
       end)
       |> Enum.reverse()
 
-    render(conn, "index.html", readings: readings)
+    render(conn, "index.html", readings: readings, page_title: "The Big List")
   end
 end
