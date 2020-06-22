@@ -10,6 +10,7 @@ defmodule Library.Seeds do
     seed_authors()
     seed_books()
     seed_authorship()
+    seed_completions()
   end
 
   @author_data [
