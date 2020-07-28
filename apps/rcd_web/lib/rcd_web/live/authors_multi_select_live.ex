@@ -125,7 +125,11 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
     {:noreply, socket}
   end
 
-  def handle_event("query_authors", %{"value" => query, "code" => _code}, socket) do
+  def handle_event("query_authors", %{"value" => query}) do
+    handle_event("query_authors", %{"value" => query, "code" => nil, "key" => nil})
+  end
+
+  def handle_event("query_authors", %{"value" => query, "code" => _code, "key" => _key}, socket) do
     socket =
       case String.length(query) do
         0 ->
