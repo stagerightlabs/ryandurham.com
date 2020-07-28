@@ -126,11 +126,11 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
   end
 
   def handle_event("query_authors", %{"value" => query}, socket) do
-    handle_event("query_authors", %{"value" => query, "code" => nil, "key" => nil})
+    handle_event("query_authors", %{"value" => query, "code" => nil, "key" => nil}, socket)
   end
 
   def handle_event("query_authors", %{"value" => query, "key" => _key}, socket) do
-    handle_event("query_authors", %{"value" => query, "code" => nil, "key" => nil})
+    handle_event("query_authors", %{"value" => query, "code" => nil, "key" => nil}, socket)
   end
 
   def handle_event("query_authors", %{"value" => query, "code" => _code, "key" => _key}, socket) do
