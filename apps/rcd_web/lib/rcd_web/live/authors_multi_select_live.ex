@@ -74,6 +74,8 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
       >
         <li
           class="py-1 px-3 text-owl-600 cursor-pointer rounded select-none bg-owl-400"
+          phx-click="create"
+          phx-value-slug="<%= @query %>"
         >
           Create new author: <%= @query %></em>
         </li>
@@ -159,6 +161,15 @@ defmodule RcdWeb.AuthorsMultiSelectLive do
       |> List.first()
 
     make_selection(selection, socket)
+  end
+
+  def handle_event("create", %{"slug" => slug}, socket) do
+    case Authors.create_author(%{name: slug}) do
+      {:ok, author} -> make_selection(author, socket)
+      _ ->
+        assign(socket, query: "")
+        {:noreply, socket}
+    end
   end
 
   def handle_event("blur", _, socket) do
