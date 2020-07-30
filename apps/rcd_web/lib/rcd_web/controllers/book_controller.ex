@@ -11,7 +11,7 @@ defmodule RcdWeb.BookController do
   def index(conn, _params) do
     books =
       Books.list_books()
-      |> Enum.group_by(fn book -> String.first(book.sortable_title) end)
+      |> Enum.group_by(fn book -> String.first(book.sortable_title) |> String.downcase() end)
       |> Enum.map(fn {letter, group} ->
         %{
           letter: String.upcase(letter),
