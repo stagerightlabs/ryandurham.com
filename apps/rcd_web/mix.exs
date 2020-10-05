@@ -24,7 +24,7 @@ defmodule RcdWeb.MixProject do
   def application do
     [
       mod: {RcdWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools, :os_mon, :timex, :ssl]
+      extra_applications: [:logger, :runtime_tools, :os_mon, :timex]
     ]
   end
 
