@@ -8,7 +8,14 @@
   <title><%= RcdWeb.PageTitle.page_title(@conn.assigns) %></title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
   <link rel="icon" href="<%= Routes.static_path(@conn, "/images/moose.png") %>">
+  <!-- CSRF Token -->
   <%= csrf_meta_tag() %>
+  <!-- Umami -->
+  <script async defer
+    data-website-id="2e74f006-1780-496f-8d32-43ec06051faf"
+    src="https://umami.stagerightlabs.com/umami.js"
+    data-do-not-track="true"
+  ></script>
 </head>
 
 <body class="h-screen bg-owl-100 dark:bg-owl-900 text-owl-900 dark:text-owl-400">
