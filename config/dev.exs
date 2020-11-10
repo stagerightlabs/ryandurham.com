@@ -13,8 +13,8 @@ config :library, Library.Repo,
 config :library, Library.Repo,
   username: "ryan",
   password: "secret",
-  database: "ryandurham.com",
-  hostname: "localhost",
+  database: "rcd_dev",
+  hostname: "postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -22,8 +22,8 @@ config :library, Library.Repo,
 config :admin, Admin.Repo,
   username: "ryan",
   password: "secret",
-  database: "ryandurham.com",
-  hostname: "localhost",
+  database: "rcd_dev",
+  hostname: "postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
