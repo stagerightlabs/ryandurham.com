@@ -45,3 +45,7 @@ php artisan boost:install
 
 Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
 </laravel-boost-guidelines>
+
+# Project Notes
+
+- Use only the **free** edition of Flux UI. Do not use Flux Pro components, and do not add a Flux license or `auth.json` credentials. If a Pro component would be useful, build it from free Flux components, Tailwind and Alpine instead.
