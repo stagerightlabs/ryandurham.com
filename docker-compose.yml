@@ -21,10 +21,10 @@ services:
     restart: unless-stopped
 
   node:
-    image: node:22-alpine
+    build: ./docker/node
     user: "${UID:-1000}:${GID:-1000}"
     working_dir: /var/www/html
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "pnpm install && pnpm dev"
     ports:
       - "5173:5173"
     volumes:
