@@ -49,3 +49,27 @@ Boost replaces these bootstrap instructions with guidelines tailored to the appl
 # Project Notes
 
 - Use only the **free** edition of Flux UI. Do not use Flux Pro components, and do not add a Flux license or `auth.json` credentials. If a Pro component would be useful, build it from free Flux components, Tailwind and Alpine instead.
+
+# Running Commands
+
+PHP, Composer and Node are not installed on the host. Run everything through `./ops.sh`, which wraps `docker compose`:
+
+- `./ops.sh art <args>` – `php artisan` (alias: `artisan`)
+- `./ops.sh composer <args>`
+- `./ops.sh pnpm <args>` / `./ops.sh npx <args>` – run in a throwaway `node` container
+- `./ops.sh test [args]` – Pest, with `--compact` output
+- `./ops.sh format` – Pint on changed files only (`--dirty`)
+- `./ops.sh phpstan [args]`
+- `./ops.sh <anything else>` – passed to `docker compose` (`up -d`, `down`, `logs`, ...); no args runs `ps`
+
+# Token Economy
+
+Default to the cheapest approach that gets the job done:
+
+- Use the compact `ops.sh` commands above as-is; don't remove their `--compact`/`--dirty` flags.
+- Run a targeted test (`./ops.sh test --filter=...` or a single file) rather than the whole suite; run the full suite only before finishing.
+- Limit noisy output: use `tail`/`head`/`grep` on logs and build output, `git status --short`, `git diff --stat` before a full diff.
+- Read only the lines you need (offset/limit); never read `composer.lock`, `pnpm-lock.yaml`, `vendor/`, `node_modules/` or built assets in `public/build`.
+- Search with Grep/Glob before reading files; don't re-read a file after editing it.
+- Don't spawn subagents or run browser/screenshot tooling unless asked.
+- Keep replies short: state what changed and anything unverified, without restating the diff.
