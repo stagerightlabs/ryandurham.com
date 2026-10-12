@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,4 +7,20 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@keyframes navigate-out {
+    to { opacity: 0; }
+}
+
+@keyframes navigate-in {
+    from { opacity: 0;  }
+}
+
+html:active-view-transition-type(navigate)::view-transition-old(livewire-navigate) {
+    animation: navigate-out 150ms ease-in both;
+}
+
+html:active-view-transition-type(navigate)::view-transition-new(livewire-navigate) {
+    animation: navigate-in 200ms ease-out both;
 }
