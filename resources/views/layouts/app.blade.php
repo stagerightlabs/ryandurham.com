@@ -13,21 +13,18 @@
     </head>
 
     <body class="flex min-h-screen bg-zinc-100 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
-        {{-- mx-auto centers the box horizontally; it sits near the top and the page scrolls when content is long. --}}
-
-
-
-        <main class="mx-auto w-full max-w-4xl px-6 py-48">
-
-
-
-            <div class="mx-4"><livewire:navigation class="pl-24" /></div>
+        <main class="mx-auto w-full max-w-4xl px-6 py-6 sm:py-12 md: py-24 lg:py-48">
+            <div class="mx-4">
+                <livewire:navigation class="pl-24" />
+            </div>
             <flux:card variant="soft" size="lg" wire:transition.navigate>
-                <flux:card.body class="space-y-6" >
+                <flux:card.body>
                       {{ $slot }}
                 </flux:card.body>
-
             </flux:card>
+            <flux:text class="mx-4 mt-4 text-right text-sm">
+                Ryan C. Durham
+            </flux:text>
         </main>
         @fluxScripts
     </body>
