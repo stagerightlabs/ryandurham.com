@@ -7,9 +7,30 @@
 
         <title>{{ $title ? $title.' · ' : '' }}{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="icon" href="/favicon.ico" sizes="32x32">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" id="favicon">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
         @vite('resources/css/app.css')
 
         @fluxAppearance
+
+        <script>
+            // Keep the favicon in step with the site theme (Flux toggles the `dark` class on <html>).
+            (() => {
+                const sync = () => {
+                    const icon = document.getElementById('favicon');
+                    if (icon) icon.href = document.documentElement.classList.contains('dark')
+                        ? '/favicon-dark.svg'
+                        : '/favicon-light.svg';
+                };
+                sync();
+                new MutationObserver(sync).observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ['class'],
+                });
+            })();
+        </script>
     </head>
 
     <body class="flex min-h-screen bg-zinc-100 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
